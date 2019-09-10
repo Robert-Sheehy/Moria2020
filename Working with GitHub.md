@@ -12,9 +12,9 @@
       to do this you need the URL of your personal copy of the repo (YourName/Moria2020).
       Clicking the Clone or download gives the option of copying the URL to the clipboard.
       On the desktop, navigate to where you would like to store the local copy
-      Right-Click > Git Bash Here
+      Right-Click > Git GUI Here
       
-      $  git clone (paste url here  use right click as ctrl - v wont work all the time)
+     For the first time on a given machine we will need to select the Clone Existing Option. Copy the URL into the Source Destination, for the target destination browse to where you would like to place the Repo, select the appropriate directory, Desktop for example, and then add the name for the folder containg the repo   e.g.  ....Desktop/Foldername
       
       You now have a local copy of the repo which you can work on.
       
