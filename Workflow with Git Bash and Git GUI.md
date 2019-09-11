@@ -13,7 +13,9 @@
     
 7.  This should list all remotes, typically the only one will be your personal one (listed twice for push and fetch)
 8.  If the Group repository is not listed, then we add this as a remote using
-    $ git remote add GroupRepo  <URL of Group repo here>
+
+    $ git remote add GroupRepo ( URL of Group repo here )
+    
     Note:   GroupRepo is just a name that we assign to it, it can be anything, it is usually referred to as the upstream
 9.  Repeat step 6 and we should now see the Group Repository also listed.
 10. To "fetch" the changes made to the Group repo we..
