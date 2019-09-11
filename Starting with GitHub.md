@@ -16,6 +16,27 @@
       
      For the first time on a given machine we will need to select the Clone Existing Option. Copy the URL into the Source Destination, for the target destination browse to where you would like to place the Repo, select the appropriate directory, Desktop for example, and then add the name for the folder containg the repo   e.g.  ....Desktop/Foldername
       
-      You now have a local copy of the repo which you can work on.
+      You now have a local copy of the repo which you can work on. Minimise Git GUI.
+
+5.  You are now free to edit the local version of the project on yor computer. This will mean that you may
+        . Edit and existing file
+        . Create a new file
+        . Delete an existing file
+        
+    Once you have completed your edits it is now necessay to upload your edits back to the cloud.
+    
+ 6. Uploading/updating the changes you made to the Group Repository involves 2 steps by you and 1 by the administrator of the Group Repo.
+ 
+        .  First you must upload your changes to your local repository, to do this
+                . save all work and close all editors
+                . maximise Git GUI, rescan, stage all changes you wish to send on
+                . Enter a Commit message, Commit and  PUSH
+           You should now see the changes on your personal GitHub account
+           
+         .  Secondly, you must now create a pull request from your personal GitHub account, to the main Group repository. Usually your 
+         commit message is already there, you may change it or add to it at this stage. Do not close the Pull request unless you have
+         decided that you do not want to submit. Your role is done at this stage
+         
+         . Finally, the pull request appear on the Admin account, and is usually accepted if merging is possible.  We will discuss                  conflicts at a later stage.
       
       
