@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class CharacterControl : MonoBehaviour
 {
+    GameManagerScript theManager;
     // Start is called before the first frame update
     void Start()
     {
-        
+        theManager = FindObjectOfType<GameManagerScript>();
     }
 
     // Update is called once per frame
@@ -45,8 +46,13 @@ public class CharacterControl : MonoBehaviour
         if(direction.magnitude>0)
 
         {
-            transform.position += direction;
-            transform.rotation = Quaternion.LookRotation(direction);
+            Vector3 newPosition = transform.position + direction;
+            if (theManager.CanMoveTo(newPosition))
+            {
+                transform.position += direction;
+
+                transform.rotation = Quaternion.LookRotation(direction);
+            }
         }
     }
 }
