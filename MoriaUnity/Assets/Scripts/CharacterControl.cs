@@ -43,6 +43,7 @@ public class CharacterControl : MonoBehaviour
             direction = new Vector3(1, 0, -1);
 
         if(direction.magnitude>0)
+
         {
             transform.position += direction;
             transform.rotation = Quaternion.LookRotation(direction);
