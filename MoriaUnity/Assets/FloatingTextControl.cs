@@ -16,7 +16,8 @@ public class FloatingTextControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
+        //Rotates text to look toward the main camera
+        transform.rotation = Quaternion.LookRotation(-(Camera.main.transform.position - transform.position).normalized, Vector3.up);
     }
 
     internal void setMessage(string v)
@@ -24,14 +25,16 @@ public class FloatingTextControl : MonoBehaviour
         bubbleText.text = v;
     }
 
-    internal void copyParentName()
+    internal void copyParentName(String parentName)
     {
-        bubbleText.text = name;
+        bubbleText.text = parentName;
     }
 
     internal void setParent(Transform transformOfParent)
     {
+        //Attaches the text to its parent and moves it to the parent location
         transform.parent = transformOfParent;
+        transform.localPosition = Vector3.zero;
     }
 
     internal void setColor()
@@ -42,11 +45,23 @@ public class FloatingTextControl : MonoBehaviour
 
     internal void increaseSize()
     {
-        bubbleText.fontSize += 1;
+        bubbleText.fontSize += 2;
     }
 
     internal void decreaseSize()
     {
-        bubbleText.fontSize -= 1;
+        bubbleText.fontSize -= 2;
+    }
+
+    internal void transparencyOn()
+    {
+        Color transparency = new Color(1f, 1f, 1f, 0.2f);
+        bubbleText.color = transparency;
+    }
+
+    internal void transparencyOff()
+    {
+        Color transparency = new Color(1f, 1f, 1f, 1f);
+        bubbleText.color = transparency;
     }
 }
