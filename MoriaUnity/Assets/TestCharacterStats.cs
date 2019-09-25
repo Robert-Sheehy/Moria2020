@@ -19,6 +19,59 @@ public class TestCharacterStats : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.D)) myTestGuy.removeHealth(5);
 
-        print(myTestGuy.getHealth());
+        if (Input.GetKeyDown(KeyCode.Q)) myTestGuy.increaseHealth(5);
+
+        if (Input.GetKeyDown(KeyCode.E)) myTestGuy.decreaseHealth(5);
+
+        if (Input.GetKeyDown(KeyCode.J)) myTestGuy.addMana(5);
+
+        if (Input.GetKeyDown(KeyCode.L)) myTestGuy.removeMana(5);
+
+        if (Input.GetKeyDown(KeyCode.U)) myTestGuy.increaseMana(5);
+
+        if (Input.GetKeyDown(KeyCode.P)) myTestGuy.decreaseMana(5);
+
+        if (Input.GetKeyDown(KeyCode.Z)) myTestGuy.addStrength(5);
+
+        if (Input.GetKeyDown(KeyCode.X)) myTestGuy.removeStrength(5);
+
+        if (Input.GetKeyDown(KeyCode.C)) myTestGuy.addIntell(5);
+
+        if (Input.GetKeyDown(KeyCode.V)) myTestGuy.removeIntell(5);
+
+        if (Input.GetKeyDown(KeyCode.B)) myTestGuy.addWis(5);
+
+        if (Input.GetKeyDown(KeyCode.N)) myTestGuy.removeWis(5);
+
+        if (Input.GetKeyDown(KeyCode.M)) myTestGuy.addDex(5);
+
+        if (Input.GetKeyDown(KeyCode.Keypad1)) myTestGuy.removeDex(5);
+
+        if (Input.GetKeyDown(KeyCode.Keypad2)) myTestGuy.addConst(5);
+
+        if (Input.GetKeyDown(KeyCode.Keypad3)) myTestGuy.removeConst(5);
+
+        if (Input.GetKeyDown(KeyCode.Keypad4)) myTestGuy.addCha(5);
+
+        if (Input.GetKeyDown(KeyCode.Keypad5)) myTestGuy.removeCha(5);
+
+
+
+        print(myTestGuy.getMana() + " Mana");
+
+        print(myTestGuy.getHealth() + " Health");
+
+        print(myTestGuy.getStrength() + " Strength");
+
+        print(myTestGuy.getIntell() + " Intell");
+
+        print(myTestGuy.getWis() + " Wis");
+
+        print(myTestGuy.getDex() + " Dex");
+
+        print(myTestGuy.getConst() + " Const");
+
+        print(myTestGuy.getCha() + " Cha");
+
     }
 }
