@@ -1,0 +1,16 @@
+Item Manager:
+Manage Items.
+
+Populate Level with Items
+		Generate/Create Appropriate Items (Level dependant)
+		
+Loot Item Generation
+
+		
+Place Items.   Need a GameManager.canPlaceItemHere(x,y)
+
+Keep Track of Item
+
+
+
+
