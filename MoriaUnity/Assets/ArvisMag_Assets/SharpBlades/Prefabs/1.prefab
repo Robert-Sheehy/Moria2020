@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 432822}
   - component: {fileID: 3334406}
   - component: {fileID: 2337334}
+  - component: {fileID: 5172487774699745213}
   m_Layer: 0
-  m_Name: DobleSideKnife
+  m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,3 +78,15 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &5172487774699745213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f986759d2e0b43b44b33c82e2b83112a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

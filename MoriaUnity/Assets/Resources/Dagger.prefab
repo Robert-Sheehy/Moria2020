@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 4174697600282936}
   - component: {fileID: 33305712895461752}
   - component: {fileID: 23510092106104402}
+  - component: {fileID: 4341348925310201311}
   m_Layer: 0
-  m_Name: dagger1_001
+  m_Name: Dagger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,3 +78,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &4341348925310201311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808860897598984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4017c3f7da7c014abda6bef6c00a1e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FloatingTextClonable: {fileID: 0}
