@@ -8,7 +8,7 @@ public class ItemDatabase : MonoBehaviour
 
     private void Start()
     {
-        items.Add(new Item("Spear of the gods",0,"the best spear",2,0,Item.ItemType.Weapom,2));
-        items.Add(new Item("Godly Armour", 1, "the best Armour", 0, 0, Item.ItemType.armour,2));
+    //    items.Add(new Item("Spear of the gods",0,"the best spear",2,0,Item.ItemType.Weapom,2));
+     //   items.Add(new Item("Godly Armour", 1, "the best Armour", 0, 0, Item.ItemType.armour,2));
     }
 }
