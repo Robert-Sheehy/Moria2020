@@ -55,6 +55,10 @@ public class TestCharacterStats : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Keypad5)) myTestGuy.removeCha(5);
 
+        if (Input.GetKeyDown(KeyCode.Tab)) myTestGuy.addExp(100);
+
+        if (Input.GetKeyDown(KeyCode.LeftShift)) myTestGuy.removeExp(5);
+
 
 
         print(myTestGuy.getMana() + " Mana");
@@ -72,6 +76,10 @@ public class TestCharacterStats : MonoBehaviour
         print(myTestGuy.getConst() + " Const");
 
         print(myTestGuy.getCha() + " Cha");
+
+        print(myTestGuy.getExp() + " Exp");
+
+        print(myTestGuy.getLevel() + " Level");
 
     }
 }
