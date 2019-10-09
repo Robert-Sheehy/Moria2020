@@ -14,7 +14,7 @@ public class Character_Stats : MonoBehaviour
     int maxConst = 100, minConst = 0, cConst;
     int maxCha = 100, minCha = 0, cCha;
     int exp;
-    int maxLevel, minLevel = 1, cLevel;
+    int maxLevel = 100, minLevel = 1, cLevel;
 
     // Start is called before the first frame update
     void Start()
@@ -90,6 +90,31 @@ public class Character_Stats : MonoBehaviour
         {
             cWis = maxWis;
         }
+    }
+
+    internal void removeExp(int v)
+    {
+        exp -= v;
+        if (exp <= 0)
+        {
+            exp = 0;
+        }
+    }
+
+    internal void addExp(int v)
+    {
+        exp += v;
+        if (exp == 100)
+        {
+            cLevel++;
+            exp = 0;
+        }
+
+        if (cLevel >= maxLevel)
+        {
+            cLevel = maxLevel;
+        }
+
     }
 
     internal void removeWis(int v)
@@ -251,4 +276,15 @@ public class Character_Stats : MonoBehaviour
         return cCha;
 
     }
+
+    internal int getExp()
+    {
+        return exp;
+    }
+
+    internal int getLevel()
+    {
+        return cLevel;
+    }
+
 }
