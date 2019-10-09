@@ -26,9 +26,4 @@ public class GameManagerScript : MonoBehaviour
     {
         return theMap[(int)newPosition.x, (int)newPosition.z] < 10;
     }
-
-    internal bool canMoveTo(Vector3 newPosition)
-    {
-        throw new NotImplementedException();
-    }
 }
