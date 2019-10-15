@@ -51,23 +51,6 @@ namespace Assets.Scripts
             this.player = false;
         }
 
-        public void recalculateCharacter(Character_Stats character)
-        {
-            /* Runs the same code as the Character constructor
-             * Runs at the start of Combat.Attack
-             * This recalculates character stats in case equipment or stats have changed 
-             */
-            this.strengthBonus = (int)(character.getStrength() / 10);
-            this.dexterityBonus = (int)(character.getDex() / 10);
-            this.intelligenceBonus = (int)(character.getIntell() / 10);
-            this.HP = (character.getHealth());
-            this.damageNumber = 1;
-            this.damageRange = 6;
-            this.hitBonus = 1;
-            this.damageBonus = 1;
-            this.totalAC = 14;
-        }
-
         public int getStrengthBonus()
         {
             return this.strengthBonus;

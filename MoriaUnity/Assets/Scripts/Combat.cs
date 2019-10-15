@@ -9,13 +9,26 @@ namespace Assets.Scripts
     class Combat
     {
         Random roll = new Random();
-        public void Attack(Creature attacker, Creature victim)
+        public void Attack(Character_Stats character, Creature victim)
         {
+            Creature attacker = new Creature(character);
             int isHit = HitCheck(attacker, victim);
             
             if(isHit > 0)
             {
-                int damageDealt = CalcDamage(attacker, victim);
+                int damageDealt = CalcDamage(attacker, victim, isHit);
+                victim.damaged(damageDealt);
+            }
+        }
+
+        public void Attack(Creature attacker, Character_Stats character)
+        {
+            Creature victim = new Creature(character);
+            int isHit = HitCheck(attacker, victim);
+
+            if (isHit > 0)
+            {
+                int damageDealt = CalcDamage(attacker, victim, isHit);
                 victim.damaged(damageDealt);
             }
         }
@@ -63,7 +76,7 @@ namespace Assets.Scripts
             return 0;
         }
 
-        public int CalcDamage(Creature attacker, Creature victim)
+        public int CalcDamage(Creature attacker, Creature victim, int isCrit)
         {
             int damageDealt = 0;
 
@@ -76,6 +89,9 @@ namespace Assets.Scripts
             //Another line that would need to be updated for non melee combat
             damageDealt += attacker.getStrengthBonus();
             damageDealt += attacker.getDamageBonus();
+
+            if(isCrit == 2)
+                damageDealt = (damageDealt * 2);
 
             return damageDealt;
         }
