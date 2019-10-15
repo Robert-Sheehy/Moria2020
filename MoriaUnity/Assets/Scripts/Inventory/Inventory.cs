@@ -7,7 +7,7 @@ public class Inventory : MonoBehaviour
     public int slotsX, slotsY;
     public List<Item> inventory = new List<Item>();
     public List<Item> slots = new List<Item>();
-    private ItemDatabase database;
+
     private bool showInventorty;
 
     void Start()
@@ -16,9 +16,8 @@ public class Inventory : MonoBehaviour
         {
             slots.Add(new Item());
         }
-        database = GameObject.FindGameObjectWithTag("item Database").GetComponent<ItemDatabase>();
-        inventory.Add(database.items[0]);
-        inventory.Add(database.items[1]);
+    
+
     }
 
     void Update ()
@@ -27,6 +26,19 @@ public class Inventory : MonoBehaviour
         {
             showInventorty = !showInventorty;
         }
+    }
+
+
+
+
+    internal void AddItem(Item item)
+    {
+        inventory.Add(item);
+        Debug.Log("inventory has " + inventory.Count.ToString());
+    }
+    internal void RemoveItemAtIndex(int index)
+    {inventory.RemoveAt(index);
+        Debug.Log("inventory has " + inventory.Count.ToString());
     }
 
     private void OnGUI()
