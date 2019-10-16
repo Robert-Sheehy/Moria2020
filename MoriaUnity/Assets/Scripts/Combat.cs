@@ -3,47 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UnityEngine;
 
-
-    public static class Combat
+namespace Assets.Scripts
+{
+    class Combat
     {
-        //Attack now moved to Game Manager
-        /*public static void Attack(Character_Stats character, Creature victim)
+        Random roll = new Random();
+        public void Attack(Creature attacker, Creature victim)
         {
-            System.Random roll = new System.Random();
-            Creature attacker = new Creature(character);
             int isHit = HitCheck(attacker, victim);
             
             if(isHit > 0)
             {
-                int damageDealt = CalcDamage(attacker, victim, isHit);
+                int damageDealt = CalcDamage(attacker, victim);
                 victim.damaged(damageDealt);
-                Debug.Log("");
             }
         }
 
-        public static void Attack(Creature attacker, Character_Stats character)
+        public int HitCheck(Creature attacker, Creature victim)
         {
-            Creature victim = new Creature(character);
-            int isHit = HitCheck(attacker, victim);
-
-            if (isHit > 0)
-            {
-                int damageDealt = CalcDamage(attacker, victim, isHit);
-                victim.damaged(damageDealt);
-            }
-        }*/
-
-    internal static bool IsAHIt()
-    {
-        throw new NotImplementedException();
-    }
-
-    
-        public static  int HitCheck(Creature attacker, Creature victim /*, int attackType*/)
-        {
-            System.Random roll = new System.Random();
             int diceRoll = roll.Next(1, 21);
 
             if(diceRoll == 1)
@@ -60,7 +38,7 @@ using UnityEngine;
             {
                 int victimAC = victim.getAC();
                 int hitValue = diceRoll;
-                //Next line would need to be replace with sample code below to allow for non melee combat
+                //Next line would need to be adapted to allow for non melee combat
                 hitValue += attacker.getStrengthBonus();
 
                 /* This is sample code for non melee combat calculations
@@ -85,10 +63,10 @@ using UnityEngine;
             return 0;
         }
 
-        public static  int CalcDamage(Creature attacker, Creature victim, int isCrit)
+        public int CalcDamage(Creature attacker, Creature victim)
         {
             int damageDealt = 0;
-            System.Random roll = new System.Random();
+
             for (int i = 0; i <= attacker.getDamageNumber(); i++)
             {
                 int damageRoll = roll.Next(1, (attacker.getDamageRange() + 1));
@@ -99,9 +77,7 @@ using UnityEngine;
             damageDealt += attacker.getStrengthBonus();
             damageDealt += attacker.getDamageBonus();
 
-            if(isCrit == 2)
-                damageDealt = (damageDealt * 2);
-
             return damageDealt;
         }
     }
+}

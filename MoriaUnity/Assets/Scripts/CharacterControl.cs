@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class CharacterControl : MonoBehaviour
 {
-    internal GameManagerScript theManager;
-    internal Character_Stats stats;
-    internal Inventory inventory;
-    
+    GameManagerScript theManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,10 +46,7 @@ public class CharacterControl : MonoBehaviour
         if(direction.magnitude>0)
 
         {
-
             Vector3 newPosition = transform.position + direction;
-
-            theManager.AttemptMove(newPosition, this);
             if (theManager.CanMoveTo(newPosition))
             {
                 transform.position += direction;

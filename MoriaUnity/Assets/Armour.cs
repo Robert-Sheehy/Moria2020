@@ -7,7 +7,7 @@ public class Armour : Item
     
 
     internal enum Slots { Torso, Head, Hands, Feet, Weapon, Neck, RightHandRing, LeftHandRing, Torch,
-        Shield
+        Shield, Back
     }
     internal Slots slot;
     int AC;

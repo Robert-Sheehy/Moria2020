@@ -16,7 +16,6 @@ public class TestInvScipt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A)) inventory.AddItem(new Item("Dagger", "1d4"));
-        if (Input.GetKeyDown(KeyCode.Z)) inventory.RemoveItemAtIndex(3);
+
     }
 }
