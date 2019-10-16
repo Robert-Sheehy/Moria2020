@@ -8,7 +8,7 @@ public class TestCharacterStats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        myTestGuy = FindObjectOfType<Character_Stats>();
+        //myTestGuy = FindObjectOfType<Character_Stats>();
         
     }
 

@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character_Stats : MonoBehaviour
-{
+public class Character_Stats { 
+
     int maxHealth = 100, minHealth = 0, cHealth;
     int maxMana = 100, minMana = 0, cMana;
     int maxStrength = 100, minStrength = 0, cStrength;
@@ -15,26 +15,7 @@ public class Character_Stats : MonoBehaviour
     int maxCha = 100, minCha = 0, cCha;
     int exp;
     int maxLevel = 100, minLevel = 1, cLevel;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        cHealth = maxHealth;
-        cStrength = 5;
-        cWis = 5;
-        cIntell = 5;
-        cDex = 5;
-        cConst = 5;
-        cCha = 5;
-        cLevel = minLevel;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-  
-    }
-
+   
     internal void addHealth(int v)
     {
         
@@ -43,8 +24,6 @@ public class Character_Stats : MonoBehaviour
         {
             cHealth = maxHealth;
         }
-
-
     }
 
     internal void addStrength(int v)
@@ -226,7 +205,7 @@ public class Character_Stats : MonoBehaviour
         if (cHealth <= minHealth)
         {
             cHealth = minHealth;
-            print("Your are dead, gg mate");
+            //print("Your are dead, gg mate");
         }
     }
 

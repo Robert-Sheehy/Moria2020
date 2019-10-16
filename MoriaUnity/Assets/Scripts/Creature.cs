@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts
-{
+
     public class Creature
     {
         private int strengthBonus;
@@ -26,7 +25,7 @@ namespace Assets.Scripts
             this.dexterityBonus = (int)(character.getDex() / 10);
             this.intelligenceBonus = (int)(character.getIntell() / 10);
             this.HP = (character.getHealth());
-            //All values below here are placeholders and will be changed.
+            //Values below here (aside from player) are placeholders and will be changed.
             this.damageNumber = 1;
             this.damageRange = 6;
             this.hitBonus = 1;
@@ -38,7 +37,7 @@ namespace Assets.Scripts
         public Creature()
         {
             //Enemy creature generation here
-            //Values below are all placeholders
+            //Values below (aside from player) are placeholders
             this.strengthBonus = 2;
             this.dexterityBonus = 2;
             this.intelligenceBonus = 2;
@@ -49,6 +48,11 @@ namespace Assets.Scripts
             this.damageBonus = 1;
             this.totalAC = 14;
             this.player = false;
+        }
+
+        public void damaged(int damageDealt)
+        {
+            this.HP = getHealth() - damageDealt;
         }
 
         public int getStrengthBonus()
@@ -95,16 +99,5 @@ namespace Assets.Scripts
         {
             return this.totalAC;
         }
-
-        public void damaged(int damageDealt)
-        {
-            this.HP = getHealth() - damageDealt;
-
-            if (this.player == true)
-            {
-                Character_Stats character = new Character_Stats();
-                character.removeHealth(damageDealt);
-            }
-        }
     }
-}
+
