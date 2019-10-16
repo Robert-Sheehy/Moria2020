@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts
-{
+
     public class Creature
     {
         private int strengthBonus;
@@ -26,7 +25,7 @@ namespace Assets.Scripts
             this.dexterityBonus = (int)(character.getDex() / 10);
             this.intelligenceBonus = (int)(character.getIntell() / 10);
             this.HP = (character.getHealth());
-            //All values below here are placeholders and will be changed.
+            //Values below here (aside from player) are placeholders and will be changed.
             this.damageNumber = 1;
             this.damageRange = 6;
             this.hitBonus = 1;
@@ -38,12 +37,12 @@ namespace Assets.Scripts
         public Creature()
         {
             //Enemy creature generation here
-            //Values below are all placeholders
+            //Values below (aside from player) are placeholders
             this.strengthBonus = 2;
             this.dexterityBonus = 2;
             this.intelligenceBonus = 2;
             this.HP = 30;
-            this.damageNumber = 1;
+            this.damageNumber = 2;
             this.damageRange = 6;
             this.hitBonus = 1;
             this.damageBonus = 1;
@@ -51,21 +50,9 @@ namespace Assets.Scripts
             this.player = false;
         }
 
-        public void recalculateCharacter(Character_Stats character)
+        public void damaged(int damageDealt)
         {
-            /* Runs the same code as the Character constructor
-             * Runs at the start of Combat.Attack
-             * This recalculates character stats in case equipment or stats have changed 
-             */
-            this.strengthBonus = (int)(character.getStrength() / 10);
-            this.dexterityBonus = (int)(character.getDex() / 10);
-            this.intelligenceBonus = (int)(character.getIntell() / 10);
-            this.HP = (character.getHealth());
-            this.damageNumber = 1;
-            this.damageRange = 6;
-            this.hitBonus = 1;
-            this.damageBonus = 1;
-            this.totalAC = 14;
+            this.HP = getHealth() - damageDealt;
         }
 
         public int getStrengthBonus()
@@ -112,16 +99,5 @@ namespace Assets.Scripts
         {
             return this.totalAC;
         }
-
-        public void damaged(int damageDealt)
-        {
-            this.HP = getHealth() - damageDealt;
-
-            if (this.player == true)
-            {
-                Character_Stats character = new Character_Stats();
-                character.removeHealth(damageDealt);
-            }
-        }
     }
-}
+
