@@ -6,17 +6,18 @@ using UnityEngine;
 public class ItemsControl : MonoBehaviour
 {
     List<Item> allItems;
-    private int randomnum;
+
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        randomnum = UnityEngine.Random.Range(0, 47);
+       
 
         allItems = new List<Item>();
-        buildItems();
+        addAllItems();
+  
 
-        createItemGO(allItems[randomnum]);
+
 
     }
     IEnumerator delayedAccess(FloatingTextControl text, string message, Transform parent)
@@ -36,18 +37,41 @@ public class ItemsControl : MonoBehaviour
         }
     }
 
-    private void createItemGO(Item item)
+    internal accessItem getRandomItem(int forLevel)
+    {
+
+         int randomnum = UnityEngine.Random.Range(0, allItems.Count);
+        Item tryItem = allItems[randomnum];
+
+        if (tryItem.min_level <= forLevel) 
+                    return  createItemGO(tryItem);
+
+        return getRandomItem(forLevel)
+
+
+
+
+
+
+    }
+
+
+
+    private accessItem createItemGO(Item item)
     {
       GameObject itemGO = (GameObject)   Instantiate( Resources.Load(item.ModelFilename));
       GameObject floatingTextGO = (GameObject)Instantiate(Resources.Load("FloatingText"));
         FloatingTextControl text = floatingTextGO.GetComponent<FloatingTextControl>();
 
         IEnumerator doThis = delayedAccess(text, item.itemName, itemGO.transform);
-
+        accessItem  itemcs = itemGO.AddComponent<accessItem>();
+        itemcs.youAre(item);
         StartCoroutine(doThis);
+
+        return itemcs;
     }
 
-    void buildItems()
+    void addAllItems()
     {
  //                             Name,                               ModelName,   Weight, Level, Cost, magic_Level, NumberOfDice, RangeOfDice, Magic_damage
         allItems.Add(new Weapon("Broken Sword",                     "Sword",     7.5f,   0,     24,   1,           1,             1,          -2));
@@ -96,11 +120,7 @@ public class ItemsControl : MonoBehaviour
         allItems.Add(new Weapon("Two-Handed Sword (Flamberge)",     "FMsword",   24.0f,   8,    1000, 1,           4,             5,          -2));
         allItems.Add(new Weapon("Two-Handed Sword (No-Dachi)",      "no-dachi",  20.0f,   8,    675,  1,           4,             4,          -2));
         allItems.Add(new Weapon("Two-Handed Sword (Zweihander)",    "Zsword",    28.0f,   8,    1500, 1,           4,             6,          -2));
-    }
-
-    void AddArmour()
-    {
-        //                       Name                            ModelName      Weight   Level Cost   Hit AC  Slot
+  //                       Name                            ModelName      Weight   Level Cost   Hit AC  Slot
         allItems.Add(new Armour("Robe",                          "helmets",     2.0f,    1,    4,     0,  2,  Armour.Slots.Torso));
         allItems.Add(new Armour("Soft Leather Armour",           "helmets",     8.0f,    2,    18,    0,  4,  Armour.Slots.Torso));
         allItems.Add(new Armour("Soft Studded Armour",           "helmets",     9.0f,    3,    35,    0,  5,  Armour.Slots.Torso));
