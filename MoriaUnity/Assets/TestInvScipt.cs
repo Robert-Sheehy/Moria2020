@@ -8,7 +8,7 @@ public class TestInvScipt : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        inventory = FindObjectOfType<Inventory>();
+    
 
         
     }

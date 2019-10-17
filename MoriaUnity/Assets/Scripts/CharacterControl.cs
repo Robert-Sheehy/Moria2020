@@ -12,6 +12,7 @@ public class CharacterControl : MonoBehaviour
     void Start()
     {
         theManager = FindObjectOfType<GameManagerScript>();
+        transform.position = new Vector3(10, 10, 20);
     }
 
     // Update is called once per frame
