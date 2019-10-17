@@ -7,7 +7,7 @@ public class Inventory
     public int slotsX, slotsY;
     public List<accessItem> inventory = new List<accessItem>();
     public List<accessItem> slots = new List<accessItem>();
-    private ItemDatabase database;
+
     private bool showInventorty;
 
 
