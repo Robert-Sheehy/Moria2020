@@ -9,6 +9,7 @@ public class Inventory : MonoBehaviour
     public List<Item> slots = new List<Item>();
     private ItemDatabase database;
     private bool showInventorty;
+    private int itemsInInventory = 0;
 
     void Start()
     {
@@ -43,7 +44,7 @@ public class Inventory : MonoBehaviour
         {
             for(int y = 0; y < slotsY; y++)
             {
-                GUI.Box(new Rect(x * 20, y * 20, 20,20), y.ToString());
+                GUI.Box(new Rect(x * itemsInInventory, y * 1, 20,20), y.ToString());
             }
         }
     }
