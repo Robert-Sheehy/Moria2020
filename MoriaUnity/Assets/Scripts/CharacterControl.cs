@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CharacterControl : MonoBehaviour
 {
+    internal Character_Stats stats;
     GameManagerScript theManager;
     TurnTimer food;
     // Start is called before the first frame update
