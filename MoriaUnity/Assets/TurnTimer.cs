@@ -9,6 +9,9 @@ public class TurnTimer
     int timerUpperbound;
     private static int timeLeft;
     private int NEARLY_OVER_THRESHOLD  = 100 ;
+    internal bool overUpperLimit;
+
+
 
     // Start is called before the first frame update
 
@@ -35,12 +38,14 @@ public class TurnTimer
         get { return timeRemaining <= 0; }
     }
 
+
     public bool isNearlyOver
     {
         get { return timeRemaining < NEARLY_OVER_THRESHOLD; }
     }
 
     public object timeleft { get { return timeRemaining; } }
+
 
     public void tick()
     {
