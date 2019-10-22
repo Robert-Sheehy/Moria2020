@@ -3,9 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//UITextCibtrol is attatched to EMPTY OBJECT called UITEXT
-//Text mesh pro is parented to UITEXT
-//TestUIText is attatched to the text mesh pro object in scene
+//TestUIText is placed on camera
 
 public class TestUIText : MonoBehaviour
 {
@@ -17,18 +15,18 @@ public class TestUIText : MonoBehaviour
     private int MaxNUmberOfTries = 5;
     int actualPx = 0;
     int actualPy = 0;
-    //Vector2 r = Camera.main.ScreenPointToRay();
-    //int x = Screen.width / 2;
-    //int y = Screen.width / 2;
+    
 
 
-    void Start()
+    void Start() 
     {
-
+        //Load Prefab
         UITextClone = Resources.Load("UIText");
+        //Create UITextControl object
         theTextBubble = FindObjectOfType<UITextControl>();
     }
 
+    //Coroutine to insure object exists before it is accessed
     private IEnumerator coroutine;
    IEnumerator delayedAccess(UITextControl theText, string Message)
     {
@@ -45,31 +43,35 @@ public class TestUIText : MonoBehaviour
     }
 
 
-    //SCREEN POSITION
-    //(rx,ry) = (actualPx/Screen.width , actualPy/Screen.height)
-    //Point (a,b) = ((a*Screen.width),(b*ScreenHeight))
-    //r = camera.main.ScreenPointToRay( )
-
-    // Ray ray = Camera.main.ScreenPointToRay(new Vector3(200, 200, 0));        
-
-    // Update is called once per frame
+    
     void Update()
     {
 
+        //Creating TMP objects
         UITextControl TextGO;
+        UITextControl TextGO1;
+        UITextControl TextGO2;
+        UITextControl TextGO3;
+        UITextControl TextGO4;
+        UITextControl TextGO5;
         if (Input.GetKeyDown(KeyCode.Space))
-        {//Create this method*********************************************
-            TextGO = TransformTextGo("sfjkdygsdeufg", new Vector3(0.5f, 0.1f,1.0f));
+        {
+            //Defining the characteristics of TMP objects
+            TextGO = TransformTextGo("Variable 1", new Vector3(0.1f, 0.1f,1.0f));
+            TextGO1 = TransformTextGo("Variable 2", new Vector3(0.1f, 0.2f, 1.0f));
+            TextGO2 = TransformTextGo("<b>Variable in Bold</b>", new Vector3(0.1f, 0.3f, 1.0f));    
+            TextGO3 = TransformTextGo("<color=red>Variable in Red</color>", new Vector3(0.1f, 0.4f, 1.0f));
+            TextGO4 = TransformTextGo("<color=red><b>Variable in Bold + Red</b></color>", new Vector3(0.1f, 0.5f, 1.0f));
+            TextGO5 = TransformTextGo("<i>Variable <color=blue> in</color> italics + specified blue</i>", new Vector3(0.1f, 0.6f, 1.0f));
+
         }
 
 
  
-
+        //This method returns the mouse position in pixels
         if (Input.GetButtonDown("Fire1"))
         {
-            //  r = Camera.main.ScreenPointToRay();
-            // position = r.distance();
-            //Debug.Log("You clicked");
+            
             Vector3 mousePos = Input.mousePosition;
             Debug.Log(mousePos.x);
             Debug.Log(mousePos.y);
@@ -78,15 +80,12 @@ public class TestUIText : MonoBehaviour
     }//End update
 
 
+    //Instantiate UITextClone object + position it
     private UITextControl TransformTextGo(string message, Vector3 relPosition)
     { 
-            //Vector3 pos = default;
-            //Quaternion rot = defaullt;
-            //transform.SetPositionAndRotation(pos, rot);
-
+       
             GameObject TextGo =(GameObject) Instantiate(UITextClone);
-            
-            //Transform TextGO = Instantiate(textPrefab);
+          
             UITextControl text = TextGo.GetComponent<UITextControl>();
             coroutine = delayedAccess(text, message);
             StartCoroutine(coroutine);
@@ -97,4 +96,5 @@ public class TestUIText : MonoBehaviour
         
     }
 
+  
 }
