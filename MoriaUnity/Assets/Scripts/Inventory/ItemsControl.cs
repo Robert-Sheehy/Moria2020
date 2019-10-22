@@ -144,14 +144,14 @@ public class ItemsControl : MonoBehaviour
         allItems.Add(new Armour("Full Plate Armour",             "helmets",     38.0f,   48,   1050, -3,  25, Armour.Slots.Torso));
         allItems.Add(new Armour("Ribbed Plate Armour",           "helmets",     38.0f,   50,   1200, -3,  28, Armour.Slots.Torso));
 
-        allItems.Add(new Armour("Soft Leather Cap",              "helmets",     1.0f,    2,    4,     0,  1, Armour.Slots.Head));
-        allItems.Add(new Armour("Hard Leather Cap",              "helmets",     1.5f,    2,    12,    0,  2, Armour.Slots.Head));
-        allItems.Add(new Armour("Metal Cap",                     "helmets",     2.0f,    7,    30,    0,  3, Armour.Slots.Head));
-        allItems.Add(new Armour("Iron Helm",                     "helmets",     7.5f,    20,   75,    0,  5, Armour.Slots.Head));
-        allItems.Add(new Armour("Steel Helm",                    "helmets",     6.0f,    40,   200,   0,  6, Armour.Slots.Head));
-        allItems.Add(new Armour("Silver Crown",                  "helmets",     2.0f,    44,   500,   0,  0, Armour.Slots.Head));
-        allItems.Add(new Armour("Golden Crown",                  "helmets",     3.0f,    47,   1000,  0,  0, Armour.Slots.Head));
-        allItems.Add(new Armour("Jewel Encrusted Crown",         "helmets",     4.0f,    50,   2000,  0,  0, Armour.Slots.Head));
+        allItems.Add(new Armour("Soft Leather Cap",             "helmet_01",     1.0f,    2,    4,     0,  1, Armour.Slots.Head));
+        allItems.Add(new Armour("Hard Leather Cap",            "helmets_02",     1.5f,    2,    12,    0,  2, Armour.Slots.Head));
+        allItems.Add(new Armour("Metal Cap",                   "helmets_01",     2.0f,    7,    30,    0,  3, Armour.Slots.Head));
+        allItems.Add(new Armour("Iron Helm",                   "helmets_02",     7.5f,    20,   75,    0,  5, Armour.Slots.Head));
+        allItems.Add(new Armour("Steel Helm",                  "helmets_03",     6.0f,    40,   200,   0,  6, Armour.Slots.Head));
+        allItems.Add(new Armour("Silver Crown",                "helmets_04",     2.0f,    44,   500,   0,  0, Armour.Slots.Head));
+        allItems.Add(new Armour("Golden Crown",                "helmets_04",     3.0f,    47,   1000,  0,  0, Armour.Slots.Head));
+        allItems.Add(new Armour("Jewel Encrusted Crown",       "helmets_04",     4.0f,    50,   2000,  0,  0, Armour.Slots.Head));
     
         allItems.Add(new Armour("Small Leather Shield",    "viking_shield",     5.0f,    3,    30,    0,  2, Armour.Slots.Shield));
         allItems.Add(new Armour("Medium Leather Shield",   "viking_shield",     7.5f,    8,    60,    0,  3, Armour.Slots.Shield));
@@ -232,5 +232,80 @@ public class ItemsControl : MonoBehaviour
         allItems.Add(new Armour("Speed",                         "helmets",     0.0f,    50,   3000, 0,   0, Armour.Slots.RightHandRing));
 
         allItems.Add(new Armour("Torch",                          "torche",     3.0f,    0,    2,    0,   0, Armour.Slots.Torch));
+        //                     Name                               Model name    Level    Cost  Food
+        allItems.Add(new Food("Pint of Fine Wine",               "WineBottle",  0,       2,    400));
+        allItems.Add(new Food("Pint of Fine Ale",                "Beer",        0,       2,    500));
+        allItems.Add(new Food("Hard Biscuit",                    "Bread",       0,       2,    500));
+        allItems.Add(new Food("Strip of Beef Jerky",             "Steak",       0,       1,    1750));
+        allItems.Add(new Food("Ration of Food",                  "Cake",        0,       4,    5000));
+        allItems.Add(new Food("Pint of Fine Grade Mush",         "Stew",        1,       1,    1500));
+        allItems.Add(new Food("Slime Mold",                      "Stew",        1,       2,    3000));
+        allItems.Add(new Food("Mushroom of First-Aid",           "Mushroom_01", 5,       5,    500));
+        allItems.Add(new Food("Mushroom of Cure Confusion",      "Mushroom_02", 6,       50,   500));
+        allItems.Add(new Food("Piece of Elvish Waybread",        "Bread",       7,       25,   7500));
+        allItems.Add(new Food("Mushroom of Poison",              "Mushroom_03", 7,       0,    500));
+        allItems.Add(new Food("Mushroom of Confusion",           "Mushroom_04", 7,       0,    500));
+        allItems.Add(new Food("Mushroom of Weakness",            "Mushroom_03", 7,       0,    500));
+        allItems.Add(new Food("Mushroom of Minor Cures",         "Mushroom_04", 7,       20,   500));
+        allItems.Add(new Food("Mushroom of Cure Poison",         "Mushroom_03", 8,       60,   500));
+        allItems.Add(new Food("Mushroom of Blindness",           "Mushroom_04", 9,       0,    500));
+        allItems.Add(new Food("Mushroom of Paranoia",            "Mushroom_03", 9,       0,    500));
+        allItems.Add(new Food("Mushroom of Light Cures",         "Mushroom_02", 10,      30,   500));
+        allItems.Add(new Food("Mushroom of Cure Blindness",      "Mushroom_01", 10,      50,   500));
+        allItems.Add(new Food("Mushroom of Cure Paranoia",       "Mushroom_02", 12,      25,   500));
+        allItems.Add(new Food("Mushroom of Hallucinations",      "Mushroom_03", 13,      0,    500));
+        allItems.Add(new Food("Mushroom of Unhealth",            "Mushroom_04", 15,      75,   500));
+        allItems.Add(new Food("Mushroom of Poison",              "Mushroom_03", 7,       0,    500));
+        allItems.Add(new Food("Mold of Poison",                  "Mushroom_03", 15,      0,    1200));
+        allItems.Add(new Food("Mold of Major Cures",             "Mushroom_01", 16,      75,   1200));
+        allItems.Add(new Food("Mold of Hallucinations",          "Mushroom_04", 18,      0,    1200));
+        allItems.Add(new Food("Mold of Cure Poison",             "Mushroom_02", 19,      75,   1200));
+        allItems.Add(new Food("Mushroom of Restore Constitution","Mushroom_01", 20,      350,  500));
+        allItems.Add(new Food("Mold of Unhealth",                "Mushroom_03", 28,      25,   1200));
+
+        allItems.Add(new Food("Blindness",                       "PotionSmall", 0,       0,    0));
+        allItems.Add(new Food("Confusion",                       "PotionSmall", 0,       0,    0));
+        allItems.Add(new Food("Salt Water",                      "Bottle",      0,       0,    0));
+        allItems.Add(new Food("Sleep",                           "PotionSmall", 0,       0,    50));
+        allItems.Add(new Food("Water",                           "Bottle",      0,       0,    200));
+        allItems.Add(new Food("Apple Juice",                     "Bottle",      0,       0,    250));
+        allItems.Add(new Food("Slime Mold Juice",                "Bottle",      0,       0,    400));
+        allItems.Add(new Food("Cure Light Wounds",               "PotionSmall", 0,       0,    50));
+        allItems.Add(new Food("Slowness",                        "PotionSmall", 30,      1000, 500));
+        allItems.Add(new Food("Boldness",                        "PotionSmall", 30,      1000, 500));
+        allItems.Add(new Food("Slow Poison",                     "PotionSmall", 30,      1000, 500));
+        allItems.Add(new Food("Resist Heat",                     "PotionSmall", 30,      1000, 500));
+        allItems.Add(new Food("Resist Cold",                     "PotionSmall", 30,      1000, 500));
+        allItems.Add(new Food("Heroism",                         "PotionSmall", 30,      1000, 500));
+        allItems.Add(new Food("Haste Self",                      "PotionSmall", 30,      1000, 500));
+        allItems.Add(new Food("Poison",                          "PotionSmall", 30,      1000, 500));
+        allItems.Add(new Food("Weakness",                        "PotionSmall", 30,      1000, 500));
+        allItems.Add(new Food("Infra-Vision",                    "PotionSmall", 30,      1000, 500));
+        allItems.Add(new Food("Cure Serious Wounds",             "PotionSmall", 30,      1000, 500));
+        allItems.Add(new Food("Detect Invisble",                 "PotionBig",   30,      1000, 500));
+        allItems.Add(new Food("Super Heroism",                   "PotionBig",   30,      1000, 500));
+        allItems.Add(new Food("Neutralise Poison",               "PotionBig",   30,      1000, 500));
+        allItems.Add(new Food("Cure Critical Wounds",            "PotionBig",   30,      1000, 500));
+        allItems.Add(new Food("Lose Experience",                 "PotionSmall", 30,      1000, 500));
+        allItems.Add(new Food("Healing",                         "PotionBig",   30,      1000, 500));
+        allItems.Add(new Food("Lose Intelligence",               "PotionSmall", 30,      1000, 500));
+        allItems.Add(new Food("Lose Wisdom",                     "PotionSmall", 30,      1000, 500));
+        allItems.Add(new Food("Ugliness",                        "PotionSmall", 30,      1000, 500));
+        allItems.Add(new Food("Charisma",                        "PotionBig",   30,      1000, 500));
+        allItems.Add(new Food("Constitution",                    "PotionBig",   30,      1000, 500));
+        allItems.Add(new Food("Dexterity",                       "PotionBig",   30,      1000, 500));
+        allItems.Add(new Food("Intelligence",                    "PotionBig",   30,      1000, 500));
+        allItems.Add(new Food("Strength",                        "PotionBig",   30,      1000, 500));
+        allItems.Add(new Food("Wisdom",                          "PotionBig",   30,      1000, 500));
+        allItems.Add(new Food("Restore Mana",                    "PotionBig",   30,      1000, 500));
+        allItems.Add(new Food("Invulnerability",                 "PotionBig",   30,      1000, 500));
+        allItems.Add(new Food("Restore Charisma",                "PotionBig",   30,      1000, 500));
+        allItems.Add(new Food("Restore Constitution",            "PotionBig",   30,      1000, 500));
+        allItems.Add(new Food("Restore Intellignece",            "PotionBig",   30,      1000, 500));
+        allItems.Add(new Food("Restore Strength",                "PotionBig",   30,      1000, 500));
+        allItems.Add(new Food("Restore Wisdom",                  "PotionBig",   30,      1000, 500));
+        allItems.Add(new Food("Restore Life Levels",             "PotionBig",   30,      1000, 500));
+        allItems.Add(new Food("Gain Experience",                 "PotionBig",   30,      1000, 500));
+
     }
 }
