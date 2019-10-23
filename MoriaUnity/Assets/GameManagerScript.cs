@@ -76,16 +76,63 @@ public class GameManagerScript : MonoBehaviour
 
     }
 
-    private Creature getMonsterAt(Vector3 newPosition)
+    internal bool monsterIsHere(Vector3 newPosition)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal Creature getMonsterAt(Vector3 newPosition)
     {
         throw new NotImplementedException();
     }
 
 
 
+    
 
-    internal bool CanMoveTo(Vector3 newPosition)
+    internal bool CanMoveTo(CharacterControl character, Vector3 newPosition)
     {
+        // Check For Monster
+        if (theMap[(int)newPosition.x, (int)newPosition.z].containsMonster())
+        {
+            int damage = registerAttack(                new Creature(character.stats),
+                                                        theMap[(int)newPosition.x, (int) newPosition.z].getMonster().stats);
+            theMap[(int)newPosition.x, (int)newPosition.z].getMonster().reduceHealth(damage);
+        }
+
         return theMap[(int)newPosition.x, (int)newPosition.z].canMoveTo();
+    }
+
+    private int registerAttack(Creature creatureA, Creature CreatureB)
+
+    {
+        {
+          
+            int isHit = Combat.HitCheck(creatureA, CreatureB);
+
+
+
+            if (isHit == 1)
+            {
+                int damageDealt = Combat.CalcDamage(creatureA, CreatureB, isHit);
+                CreatureB.damaged(damageDealt);
+                Debug.Log(damageDealt + " Damage Dealt");
+                return damageDealt;
+            }
+
+            if (isHit == 2)
+            {
+                int damageDealt = Combat.CalcDamage(creatureA, CreatureB, isHit);
+                CreatureB.damaged(damageDealt);
+                Debug.Log("Critical Hit!\n" + damageDealt + " Damage Dealt");
+                return damageDealt;
+            }
+
+
+      
+                Debug.Log("Attack Missed...");
+                return 0;
+       
+        }
     }
 }

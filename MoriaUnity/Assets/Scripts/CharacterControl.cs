@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -55,14 +56,20 @@ public class CharacterControl : MonoBehaviour
             if (food.isNearlyOver) print("You are getting Hungry");
             if (food.isOver) print("You faint from hunger");
             if (food.overUpperLimit) print("You feel bloated, movement slowed");
-
+          
             Vector3 newPosition = transform.position + direction;
-            if (theManager.CanMoveTo(newPosition))
+  
+            if (theManager.CanMoveTo(this,newPosition))
             {
                 transform.position += direction;
 
                 transform.rotation = Quaternion.LookRotation(direction);
             }
         }
+    }
+
+    private void processHit(CharacterControl characterControl, Creature creature)
+    {
+        throw new NotImplementedException();
     }
 }
