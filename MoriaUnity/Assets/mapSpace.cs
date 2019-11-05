@@ -38,4 +38,9 @@ public  enum Immovables { Space, Open_Door, Stairs_Up, Stairs_Down, Wall, Closed
     {
         return EnemyHere;
     }
+
+    internal void place(Item item)
+    {
+        ItemsHere.Add(item);
+    }
 }
