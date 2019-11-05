@@ -20,15 +20,18 @@ public class EnemyControl : MonoBehaviour
     {
         print(getDirection());
 
-        if (IshouldMove()) moveMe(getDirection());
-       
-        
+        if (IshouldMove()) moveMe(getDirection()); 
     }
 
     private void moveMe(Vector3 v)
     {
         transform.position += v;
         transform.rotation = Quaternion.LookRotation(v);
+    }
+
+    internal void youAreA(Creature creature)
+    {
+        stats = creature;
     }
 
     private bool IshouldMove()
@@ -62,6 +65,5 @@ public class EnemyControl : MonoBehaviour
     internal void reduceHealth(int damage)
     {
         stats.damaged(damage);
-        
     }
 }

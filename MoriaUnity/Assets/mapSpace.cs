@@ -13,7 +13,7 @@ public  enum Immovables { Space, Open_Door, Stairs_Up, Stairs_Down, Wall, Closed
 
     List<Item> ItemsHere;
     CharacterControl CharacterHere;
-    EnemyControl EnemyHere;
+    Creature EnemyHere;
 
     public mapSpace(Immovables wall)
     {
@@ -24,7 +24,7 @@ public  enum Immovables { Space, Open_Door, Stairs_Up, Stairs_Down, Wall, Closed
 
     internal bool containsMonster()
     {
-        throw new NotImplementedException();
+        return EnemyHere != null;
     }
 
     internal bool canMoveTo()
@@ -34,8 +34,13 @@ public  enum Immovables { Space, Open_Door, Stairs_Up, Stairs_Down, Wall, Closed
         return thisIs < Immovables.Wall;
     }
 
-    internal EnemyControl getMonster()
+    internal Creature getMonster()
     {
         return EnemyHere;
+    }
+
+    internal void AddMonster(Creature newMonster)
+    {
+        EnemyHere = newMonster;
     }
 }
