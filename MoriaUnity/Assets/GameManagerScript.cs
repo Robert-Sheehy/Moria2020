@@ -8,16 +8,16 @@ public class GameManagerScript : MonoBehaviour
     public Transform WallPrefab;
     ItemsControl items;
     const int WORLD_WIDTH = 100, WORLD_DEPTH = 100;
-    int[,] theMap;
+    mapSpace[,] theMap;
 
 
     // Start is called before the first frame update
     void Start()
     {
         int currentLevel = 10;
-        theMap = new int[WORLD_WIDTH, WORLD_DEPTH];
+        theMap = new mapSpace[WORLD_WIDTH, WORLD_DEPTH];
         items = FindObjectOfType<ItemsControl>();
-        theMap[5, 5] = 100;
+        theMap[5, 5] = new mapSpace(mapSpace.Immovables.Wall);
         Instantiate(WallPrefab, new Vector3(5, 0, 5), Quaternion.identity);
         for (int i = 0; i < 10; i++)
         generateRandomItem(currentLevel);
@@ -46,7 +46,7 @@ public class GameManagerScript : MonoBehaviour
     }
     internal void AttemptMove(Vector3 newPosition, CharacterControl character)
     {
-        if (theMap[(int)newPosition.x, (int)newPosition.z] == 1000) //1000 is a placeholder value for identifing a monster
+        if (theMap[(int)newPosition.x, (int)newPosition.z].containsMonster()) //1000 is a placeholder value for identifing a monster
         {
             Creature monster = getMonsterAt(newPosition);
             {
@@ -76,16 +76,63 @@ public class GameManagerScript : MonoBehaviour
 
     }
 
-    private Creature getMonsterAt(Vector3 newPosition)
+    internal bool monsterIsHere(Vector3 newPosition)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal Creature getMonsterAt(Vector3 newPosition)
     {
         throw new NotImplementedException();
     }
 
 
 
+    
 
-    internal bool CanMoveTo(Vector3 newPosition)
+    internal bool CanMoveTo(CharacterControl character, Vector3 newPosition)
     {
-        return theMap[(int)newPosition.x, (int)newPosition.z] < 10;
+        // Check For Monster
+        if (theMap[(int)newPosition.x, (int)newPosition.z].containsMonster())
+        {
+            int damage = registerAttack(                new Creature(character.stats),
+                                                        theMap[(int)newPosition.x, (int) newPosition.z].getMonster().stats);
+            theMap[(int)newPosition.x, (int)newPosition.z].getMonster().reduceHealth(damage);
+        }
+
+        return theMap[(int)newPosition.x, (int)newPosition.z].canMoveTo();
+    }
+
+    private int registerAttack(Creature creatureA, Creature CreatureB)
+
+    {
+        {
+          
+            int isHit = Combat.HitCheck(creatureA, CreatureB);
+
+
+
+            if (isHit == 1)
+            {
+                int damageDealt = Combat.CalcDamage(creatureA, CreatureB, isHit);
+                CreatureB.damaged(damageDealt);
+                Debug.Log(damageDealt + " Damage Dealt");
+                return damageDealt;
+            }
+
+            if (isHit == 2)
+            {
+                int damageDealt = Combat.CalcDamage(creatureA, CreatureB, isHit);
+                CreatureB.damaged(damageDealt);
+                Debug.Log("Critical Hit!\n" + damageDealt + " Damage Dealt");
+                return damageDealt;
+            }
+
+
+      
+                Debug.Log("Attack Missed...");
+                return 0;
+       
+        }
     }
 }

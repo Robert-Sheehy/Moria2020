@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemyControl : MonoBehaviour
 {
     CharacterControl thePlayer;
-   
+    internal Creature stats;
     // Start is called before the first frame update
     void Start()
     {
@@ -57,5 +57,11 @@ public class EnemyControl : MonoBehaviour
         return 0.0f;
 
 
+    }
+
+    internal void reduceHealth(int damage)
+    {
+        stats.damaged(damage);
+        
     }
 }
