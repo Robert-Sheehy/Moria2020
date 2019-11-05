@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class CharacterControl : MonoBehaviour
 {
-    GameManagerScript theManager;
+    internal GameManagerScript theManager;
+    internal Character_Stats stats;
+    internal Inventory inventory;
+    internal Equipment equipment;
+    
     // Start is called before the first frame update
     void Start()
     {
+        equipment = new Equipment();
+
+        equipment.equip(ItemsControl.allItems[4]);
         theManager = FindObjectOfType<GameManagerScript>();
+        transform.position = new Vector3(0, 0, 0);
     }
 
     // Update is called once per frame
@@ -46,7 +54,10 @@ public class CharacterControl : MonoBehaviour
         if(direction.magnitude>0)
 
         {
+
             Vector3 newPosition = transform.position + direction;
+
+            theManager.AttemptMove(newPosition, this);
             if (theManager.CanMoveTo(newPosition))
             {
                 transform.position += direction;
