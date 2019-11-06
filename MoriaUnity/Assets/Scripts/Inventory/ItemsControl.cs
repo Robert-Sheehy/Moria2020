@@ -37,16 +37,29 @@ public class ItemsControl : MonoBehaviour
         }
     }
 
-    internal accessItem getRandomItem(int forLevel)
+    internal Item randomItem()
+    {
+        int randomnum = UnityEngine.Random.Range(0, allItems.Count);
+        return allItems[randomnum];
+    }
+    internal Item randomItem(int currentLevel)
+    {
+        Item newItem = randomItem();
+        if (newItem.min_level > currentLevel)
+            return randomItem(currentLevel);
+        return newItem;
+    }
+
+
+    internal accessItem getRandomItemGO(int forLevel)
     {
       
-         int randomnum = UnityEngine.Random.Range(0, allItems.Count);
-        Item tryItem = allItems[randomnum];
+    
+        Item tryItem = randomItem(forLevel);
 
-        if (tryItem.min_level <= forLevel) 
-                    return  createItemGO(tryItem);
+        return createItemGO(tryItem);
 
-        return getRandomItem(forLevel);
+  
 
 
 
@@ -149,9 +162,9 @@ public class ItemsControl : MonoBehaviour
         allItems.Add(new Armour("Metal Cap",                   "helmets_01",     2.0f,    7,    30,    0,  3, Armour.Slots.Head));
         allItems.Add(new Armour("Iron Helm",                   "helmets_02",     7.5f,    20,   75,    0,  5, Armour.Slots.Head));
         allItems.Add(new Armour("Steel Helm",                  "helmets_03",     6.0f,    40,   200,   0,  6, Armour.Slots.Head));
-        allItems.Add(new Armour("Silver Crown",                "helmets_04",     2.0f,    44,   500,   0,  0, Armour.Slots.Head));
-        allItems.Add(new Armour("Golden Crown",                "helmets_04",     3.0f,    47,   1000,  0,  0, Armour.Slots.Head));
-        allItems.Add(new Armour("Jewel Encrusted Crown",       "helmets_04",     4.0f,    50,   2000,  0,  0, Armour.Slots.Head));
+        allItems.Add(new Armour("Silver Crown",                     "Crown",     2.0f,    44,   500,   0,  0, Armour.Slots.Head));
+        allItems.Add(new Armour("Golden Crown",                     "Crown",     3.0f,    47,   1000,  0,  0, Armour.Slots.Head));
+        allItems.Add(new Armour("Jewel Encrusted Crown",            "Crown",     4.0f,    50,   2000,  0,  0, Armour.Slots.Head));
     
         allItems.Add(new Armour("Small Leather Shield",    "viking_shield",     5.0f,    3,    30,    0,  2, Armour.Slots.Shield));
         allItems.Add(new Armour("Medium Leather Shield",   "viking_shield",     7.5f,    8,    60,    0,  3, Armour.Slots.Shield));
@@ -366,6 +379,22 @@ public class ItemsControl : MonoBehaviour
         allItems.Add(new Scrolls("Enchant Weapon",               "scroll",      50,      500));
         allItems.Add(new Scrolls("Rune of Protection",           "scroll",      50,      500));
         allItems.Add(new Scrolls("Mass Genocide",                "scroll",      50,      1000));
-
+        //                          Name                       ModelName      Weight Level  Cost  Dig NumberOfDice RangeOfDice
+        allItems.Add(new Diggers("Shovel",                  "RustyShovel",      6.0f,    0,   15,   0,     1,       2));
+        allItems.Add(new Diggers("Pick",                        "Pickaxe",      15.0f,   0,   50,   1,     1,       3));
+        allItems.Add(new Diggers("Gnomish Shovel",          "RustyShovel",      5.0f,    20,  100,  1,     1,       2));
+        allItems.Add(new Diggers("Orcish Pick",                 "Pickaxe",      18.0f,   20,  500,  2,     1,       3));
+        allItems.Add(new Diggers("Dwarven Shovel",          "RustyShovel",      12.0f,   40,  250,  2,     1,       3));
+        allItems.Add(new Diggers("Dwarven Pick",                "Pickaxe",      20.0f,   50,  1200, 3,     1,       4));
+        //                        Name                         ModelName      Level Cost CostPlus MinRange MaxRange
+        allItems.Add(new Amulets("Searching",                   "helmets",         14,   250, 50,      -100,    50));
+        allItems.Add(new Amulets("Slow Digestion",              "helmets",         14,   200, 0,       0,       0));
+        allItems.Add(new Amulets("Teleportation",               "helmets",         14,   0,   0,       0,       0));
+        allItems.Add(new Amulets("Adornment",                   "helmets",         16,   20,  0,       0,       0));
+        allItems.Add(new Amulets("Charisma",                    "helmets",         20,   250, 100,     -20,     10));
+        allItems.Add(new Amulets("Wisdom",                      "helmets",         20,   300, 100,     -20,     10));
+        allItems.Add(new Amulets("Resist Acid",                 "helmets",         24,   250, 0,       0,       0));
+        allItems.Add(new Amulets("DOOM",                        "helmets",         50,   0,   0,       -5,      0));
+        allItems.Add(new Amulets("The Magi",                    "helmets",         50,   5000,20,      5,       125));
     }
 }
