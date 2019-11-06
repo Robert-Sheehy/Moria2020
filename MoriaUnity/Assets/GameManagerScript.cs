@@ -7,6 +7,7 @@ public class GameManagerScript : MonoBehaviour
 {
     public Transform WallPrefab;
     ItemsControl items;
+    MonsterManager monsterManager;
     const int WORLD_WIDTH = 100, WORLD_DEPTH = 100;
     mapSpace[,] theMap;
 
@@ -15,13 +16,32 @@ public class GameManagerScript : MonoBehaviour
     void Start()
     {
         int currentLevel = 10;
-        theMap = new mapSpace[WORLD_WIDTH, WORLD_DEPTH];
+        theMap = generateMap();
+
         items = FindObjectOfType<ItemsControl>();
+        monsterManager = FindObjectOfType<MonsterManager>();
         theMap[5, 5] = new mapSpace(mapSpace.Immovables.Wall);
         Instantiate(WallPrefab, new Vector3(5, 0, 5), Quaternion.identity);
         for (int i = 0; i < 10; i++)
         generateRandomItem(currentLevel);
+        Vector2Int newPosition = randomPosition();
+        Creature newMonster = monsterManager.createMonsterAt(newPosition);
+        place(newMonster, newPosition);
+    }
 
+    private void place(Creature newMonster, Vector2Int newPosition)
+    {
+        theMap[(int)newPosition.x, (int)newPosition.y].AddMonster(newMonster);
+    }
+
+    private mapSpace[,] generateMap()
+    {
+       mapSpace[,] newMap =  new mapSpace[WORLD_WIDTH, WORLD_DEPTH];
+        for (int i = 0; i < WORLD_WIDTH; i++)
+            for (int J = 0; J < WORLD_DEPTH; J++)
+                newMap[i, J] = new mapSpace(mapSpace.Immovables.Space);
+
+        return newMap;
     }
 
     private void generateRandomItem(int currentLevel)
@@ -85,34 +105,26 @@ public class GameManagerScript : MonoBehaviour
 
     internal Creature getMonsterAt(Vector3 newPosition)
     {
-        throw new NotImplementedException();
+       return  theMap[(int)newPosition.x, (int)newPosition.z].getMonster();
     }
-
-
-
-    
 
     internal bool CanMoveTo(CharacterControl character, Vector3 newPosition)
     {
         // Check For Monster
         if (theMap[(int)newPosition.x, (int)newPosition.z].containsMonster())
         {
-            int damage = registerAttack(                new Creature(character.stats),
-                                                        theMap[(int)newPosition.x, (int) newPosition.z].getMonster().stats);
-            theMap[(int)newPosition.x, (int)newPosition.z].getMonster().reduceHealth(damage);
+            int damage = registerAttack(new Creature(character.stats), theMap[(int)newPosition.x, (int) newPosition.z].getMonster());
+
+            theMap[(int)newPosition.x, (int)newPosition.z].getMonster().damaged(damage);
         }
 
         return theMap[(int)newPosition.x, (int)newPosition.z].canMoveTo();
     }
 
     private int registerAttack(Creature creatureA, Creature CreatureB)
-
     {
-        {
-          
+        {     
             int isHit = Combat.HitCheck(creatureA, CreatureB);
-
-
 
             if (isHit == 1)
             {
@@ -129,12 +141,9 @@ public class GameManagerScript : MonoBehaviour
                 Debug.Log("Critical Hit!\n" + damageDealt + " Damage Dealt");
                 return damageDealt;
             }
-
-
       
-                Debug.Log("Attack Missed...");
-                return 0;
-       
+            Debug.Log("Attack Missed...");
+            return 0;      
         }
     }
 }

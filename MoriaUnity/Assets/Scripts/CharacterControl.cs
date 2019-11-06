@@ -13,7 +13,7 @@ public class CharacterControl : MonoBehaviour
     {
         theManager = FindObjectOfType<GameManagerScript>();
         food = new TurnTimer(3000);
-        
+        transform.position = new Vector3(10, 0, 10);
 
     }
 
