@@ -46,11 +46,13 @@ public class GameManagerScript : MonoBehaviour
 
     private void generateRandomItem(int currentLevel)
     {
-        accessItem newItem = items.getRandomItem(currentLevel);
+      
 
         Vector2Int newItemPosition = randomPosition();
 
-        newItem.transform.position = new Vector3(newItemPosition.x, 0, newItemPosition.y);
+        theMap[newItemPosition.x, newItemPosition.y].place(items.randomItem(currentLevel));
+
+
     }
 
     internal Vector2Int randomPosition()
