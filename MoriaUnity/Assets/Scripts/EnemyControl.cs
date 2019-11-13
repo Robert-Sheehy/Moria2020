@@ -58,8 +58,6 @@ public class EnemyControl : MonoBehaviour
         if (x < -buff) return -1.0f;
         if (x > buff) return 1.0f;
         return 0.0f;
-
-
     }
 
     internal void reduceHealth(int damage)
