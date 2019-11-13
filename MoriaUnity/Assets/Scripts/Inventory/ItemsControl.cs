@@ -70,7 +70,7 @@ public class ItemsControl : MonoBehaviour
 
 
 
-    private accessItem createItemGO(Item item)
+    internal accessItem createItemGO(Item item)
     {
         print(item.ModelFilename);
       GameObject itemGO = (GameObject)   Instantiate( Resources.Load(item.ModelFilename));
