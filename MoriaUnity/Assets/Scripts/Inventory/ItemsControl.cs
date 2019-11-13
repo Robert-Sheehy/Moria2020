@@ -37,16 +37,29 @@ public class ItemsControl : MonoBehaviour
         }
     }
 
-    internal accessItem getRandomItem(int forLevel)
+    internal Item randomItem()
+    {
+        int randomnum = UnityEngine.Random.Range(0, allItems.Count);
+        return allItems[randomnum];
+    }
+    internal Item randomItem(int currentLevel)
+    {
+        Item newItem = randomItem();
+        if (newItem.min_level > currentLevel)
+            return randomItem(currentLevel);
+        return newItem;
+    }
+
+
+    internal accessItem getRandomItemGO(int forLevel)
     {
       
-         int randomnum = UnityEngine.Random.Range(0, allItems.Count);
-        Item tryItem = allItems[randomnum];
+    
+        Item tryItem = randomItem(forLevel);
 
-        if (tryItem.min_level <= forLevel) 
-                    return  createItemGO(tryItem);
+        return createItemGO(tryItem);
 
-        return getRandomItem(forLevel);
+  
 
 
 
@@ -149,9 +162,9 @@ public class ItemsControl : MonoBehaviour
         allItems.Add(new Armour("Metal Cap",                   "helmets_01",     2.0f,    7,    30,    0,  3, Armour.Slots.Head));
         allItems.Add(new Armour("Iron Helm",                   "helmets_02",     7.5f,    20,   75,    0,  5, Armour.Slots.Head));
         allItems.Add(new Armour("Steel Helm",                  "helmets_03",     6.0f,    40,   200,   0,  6, Armour.Slots.Head));
-        allItems.Add(new Armour("Silver Crown",                "helmets_04",     2.0f,    44,   500,   0,  0, Armour.Slots.Head));
-        allItems.Add(new Armour("Golden Crown",                "helmets_04",     3.0f,    47,   1000,  0,  0, Armour.Slots.Head));
-        allItems.Add(new Armour("Jewel Encrusted Crown",       "helmets_04",     4.0f,    50,   2000,  0,  0, Armour.Slots.Head));
+        allItems.Add(new Armour("Silver Crown",                     "Crown",     2.0f,    44,   500,   0,  0, Armour.Slots.Head));
+        allItems.Add(new Armour("Golden Crown",                     "Crown",     3.0f,    47,   1000,  0,  0, Armour.Slots.Head));
+        allItems.Add(new Armour("Jewel Encrusted Crown",            "Crown",     4.0f,    50,   2000,  0,  0, Armour.Slots.Head));
     
         allItems.Add(new Armour("Small Leather Shield",    "viking_shield",     5.0f,    3,    30,    0,  2, Armour.Slots.Shield));
         allItems.Add(new Armour("Medium Leather Shield",   "viking_shield",     7.5f,    8,    60,    0,  3, Armour.Slots.Shield));
@@ -268,44 +281,120 @@ public class ItemsControl : MonoBehaviour
         allItems.Add(new Food("Salt Water",                      "Bottle",      0,       0,    0));
         allItems.Add(new Food("Sleep",                           "PotionSmall", 0,       0,    50));
         allItems.Add(new Food("Water",                           "Bottle",      0,       0,    200));
-        allItems.Add(new Food("Apple Juice",                     "Bottle",      0,       0,    250));
-        allItems.Add(new Food("Slime Mold Juice",                "Bottle",      0,       0,    400));
-        allItems.Add(new Food("Cure Light Wounds",               "PotionSmall", 0,       0,    50));
-        allItems.Add(new Food("Slowness",                        "PotionSmall", 30,      1000, 500));
-        allItems.Add(new Food("Boldness",                        "PotionSmall", 30,      1000, 500));
-        allItems.Add(new Food("Slow Poison",                     "PotionSmall", 30,      1000, 500));
-        allItems.Add(new Food("Resist Heat",                     "PotionSmall", 30,      1000, 500));
-        allItems.Add(new Food("Resist Cold",                     "PotionSmall", 30,      1000, 500));
-        allItems.Add(new Food("Heroism",                         "PotionSmall", 30,      1000, 500));
-        allItems.Add(new Food("Haste Self",                      "PotionSmall", 30,      1000, 500));
-        allItems.Add(new Food("Poison",                          "PotionSmall", 30,      1000, 500));
-        allItems.Add(new Food("Weakness",                        "PotionSmall", 30,      1000, 500));
-        allItems.Add(new Food("Infra-Vision",                    "PotionSmall", 30,      1000, 500));
-        allItems.Add(new Food("Cure Serious Wounds",             "PotionSmall", 30,      1000, 500));
-        allItems.Add(new Food("Detect Invisble",                 "PotionBig",   30,      1000, 500));
-        allItems.Add(new Food("Super Heroism",                   "PotionBig",   30,      1000, 500));
-        allItems.Add(new Food("Neutralise Poison",               "PotionBig",   30,      1000, 500));
-        allItems.Add(new Food("Cure Critical Wounds",            "PotionBig",   30,      1000, 500));
-        allItems.Add(new Food("Lose Experience",                 "PotionSmall", 30,      1000, 500));
-        allItems.Add(new Food("Healing",                         "PotionBig",   30,      1000, 500));
-        allItems.Add(new Food("Lose Intelligence",               "PotionSmall", 30,      1000, 500));
-        allItems.Add(new Food("Lose Wisdom",                     "PotionSmall", 30,      1000, 500));
-        allItems.Add(new Food("Ugliness",                        "PotionSmall", 30,      1000, 500));
-        allItems.Add(new Food("Charisma",                        "PotionBig",   30,      1000, 500));
-        allItems.Add(new Food("Constitution",                    "PotionBig",   30,      1000, 500));
-        allItems.Add(new Food("Dexterity",                       "PotionBig",   30,      1000, 500));
-        allItems.Add(new Food("Intelligence",                    "PotionBig",   30,      1000, 500));
-        allItems.Add(new Food("Strength",                        "PotionBig",   30,      1000, 500));
-        allItems.Add(new Food("Wisdom",                          "PotionBig",   30,      1000, 500));
-        allItems.Add(new Food("Restore Mana",                    "PotionBig",   30,      1000, 500));
-        allItems.Add(new Food("Invulnerability",                 "PotionBig",   30,      1000, 500));
-        allItems.Add(new Food("Restore Charisma",                "PotionBig",   30,      1000, 500));
-        allItems.Add(new Food("Restore Constitution",            "PotionBig",   30,      1000, 500));
-        allItems.Add(new Food("Restore Intellignece",            "PotionBig",   30,      1000, 500));
-        allItems.Add(new Food("Restore Strength",                "PotionBig",   30,      1000, 500));
-        allItems.Add(new Food("Restore Wisdom",                  "PotionBig",   30,      1000, 500));
-        allItems.Add(new Food("Restore Life Levels",             "PotionBig",   30,      1000, 500));
-        allItems.Add(new Food("Gain Experience",                 "PotionBig",   30,      1000, 500));
+        allItems.Add(new Food("Apple Juice",                     "Bottle",      0,       1,    250));
+        allItems.Add(new Food("Slime Mold Juice",                "Bottle",      0,       2,    400));
+        allItems.Add(new Food("Cure Light Wounds",               "PotionSmall", 0,       15,   50));
+        allItems.Add(new Food("Slowness",                        "PotionSmall", 1,       0,    0));
+        allItems.Add(new Food("Boldness",                        "PotionSmall", 1,       10,   0));
+        allItems.Add(new Food("Slow Poison",                     "PotionSmall", 1,       25,   0));
+        allItems.Add(new Food("Resist Heat",                     "PotionSmall", 1,       30,   0));
+        allItems.Add(new Food("Resist Cold",                     "PotionSmall", 1,       30,   0));
+        allItems.Add(new Food("Heroism",                         "PotionSmall", 1,       35,   0));
+        allItems.Add(new Food("Haste Self",                      "PotionSmall", 1,       75,   0));
+        allItems.Add(new Food("Poison",                          "PotionSmall", 3,       0,    0));
+        allItems.Add(new Food("Weakness",                        "PotionSmall", 3,       0,    0));
+        allItems.Add(new Food("Infra-Vision",                    "PotionSmall", 3,       20,   0));
+        allItems.Add(new Food("Cure Serious Wounds",             "PotionSmall", 3,       40,   100));
+        allItems.Add(new Food("Detect Invisble",                 "PotionBig",   3,       50,   0));
+        allItems.Add(new Food("Super Heroism",                   "PotionBig",   3,       100,  0));
+        allItems.Add(new Food("Neutralise Poison",               "PotionBig",   5,       75,   0));
+        allItems.Add(new Food("Cure Critical Wounds",            "PotionBig",   5,       100,  100));
+        allItems.Add(new Food("Lose Experience",                 "PotionSmall", 10,      0,    0));
+        allItems.Add(new Food("Healing",                         "PotionBig",   12,      200,  200));
+        allItems.Add(new Food("Lose Intelligence",               "PotionSmall", 25,      0,    0));
+        allItems.Add(new Food("Lose Wisdom",                     "PotionSmall", 25,      0,    0));
+        allItems.Add(new Food("Ugliness",                        "PotionSmall", 25,      0,    0));
+        allItems.Add(new Food("Charisma",                        "PotionBig",   25,      300,  0));
+        allItems.Add(new Food("Constitution",                    "PotionBig",   25,      300,  50));
+        allItems.Add(new Food("Dexterity",                       "PotionBig",   25,      300,  0));
+        allItems.Add(new Food("Intelligence",                    "PotionBig",   25,      300,  0));
+        allItems.Add(new Food("Strength",                        "PotionBig",   25,      300,  50));
+        allItems.Add(new Food("Wisdom",                          "PotionBig",   25,      300,  0));
+        allItems.Add(new Food("Restore Mana",                    "PotionBig",   25,      350,  0));
+        allItems.Add(new Food("Invulnerability",                 "PotionBig",   40,      1000, 0));
+        allItems.Add(new Food("Restore Charisma",                "PotionBig",   40,      300,  0));
+        allItems.Add(new Food("Restore Constitution",            "PotionBig",   40,      300,  0));
+        allItems.Add(new Food("Restore Intellignece",            "PotionBig",   40,      300,  0));
+        allItems.Add(new Food("Restore Strength",                "PotionBig",   40,      300,  0));
+        allItems.Add(new Food("Restore Wisdom",                  "PotionBig",   40,      300,  0));
+        allItems.Add(new Food("Restore Life Levels",             "PotionBig",   40,      400,  0));
+        allItems.Add(new Food("Gain Experience",                 "PotionBig",   50,      2500, 0));
 
+        allItems.Add(new GoldGems("Copper",                      "copper",      3));
+        allItems.Add(new GoldGems("Copper",                      "copper",      4));
+        allItems.Add(new GoldGems("Copper",                      "copper",      5));
+        allItems.Add(new GoldGems("Silver",                      "silver",      6));
+        allItems.Add(new GoldGems("Silver",                      "silver",      7));
+        allItems.Add(new GoldGems("Silver",                      "silver",      8));
+        allItems.Add(new GoldGems("Garnet",                      "Garnet",      9));
+        allItems.Add(new GoldGems("Garnet",                      "Garnet",      10));
+        allItems.Add(new GoldGems("Gold",                        "gold_01",     12));
+        allItems.Add(new GoldGems("Gold",                        "gold_01",     14));
+        allItems.Add(new GoldGems("Gold",                        "gold_01",     16));
+        allItems.Add(new GoldGems("Opal",                        "Opal",        18));
+        allItems.Add(new GoldGems("Sapphire",                    "Sapphire",    20));
+        allItems.Add(new GoldGems("Gold",                        "gold_01",     24));
+        allItems.Add(new GoldGems("Ruby",                        "Ruby",        28));
+        allItems.Add(new GoldGems("Diamond",                     "Diamond",     32));
+        allItems.Add(new GoldGems("Emerald",                     "Emerald",     40));
+        allItems.Add(new GoldGems("Mithril",                     "silver",      80));
+
+        allItems.Add(new Scrolls("Light",                        "scroll",      0,       15));
+        allItems.Add(new Scrolls("Object Detection",             "scroll",      0,       15));
+        allItems.Add(new Scrolls("Treasure Detection",           "scroll",      0,       15));
+        allItems.Add(new Scrolls("Darkness",                     "scroll",      1,       0));
+        allItems.Add(new Scrolls("Summon Monster",               "scroll",      1,       0));
+        allItems.Add(new Scrolls("Blessing",                     "scroll",      1,       15));
+        allItems.Add(new Scrolls("Detect Invisible",             "scroll",      1,       15));
+        allItems.Add(new Scrolls("Phase Door",                   "scroll",      1,       15));
+        allItems.Add(new Scrolls("Identify",                     "scroll",      1,       50));
+        allItems.Add(new Scrolls("Aggrevate Monster",            "scroll",      5,       0));
+        allItems.Add(new Scrolls("Create Food",                  "scroll",      5,       10));
+        allItems.Add(new Scrolls("Monster Confusion",            "scroll",      5,       30));
+        allItems.Add(new Scrolls("Door/Stair Location",          "scroll",      5,       35));
+        allItems.Add(new Scrolls("Sleep Monster",                "scroll",      5,       35));
+        allItems.Add(new Scrolls("Trap Detection",               "scroll",      5,       35));
+        allItems.Add(new Scrolls("Magic Mapping",                "scroll",      5,       40));
+        allItems.Add(new Scrolls("Word of Recall",               "scroll",      5,       150));
+        allItems.Add(new Scrolls("Remove Curse",                 "scroll",      7,       100));
+        allItems.Add(new Scrolls("Teleport",                     "scroll",      10,      40));
+        allItems.Add(new Scrolls("Trap Creation",                "scroll",      12,      0));
+        allItems.Add(new Scrolls("Holy Chant",                   "scroll",      12,      40));
+        allItems.Add(new Scrolls("Trap/Door Destruction",        "scroll",      12,      50));
+        allItems.Add(new Scrolls("Door Creation",                "scroll",      12,      100));
+        allItems.Add(new Scrolls("Enchant Weapon To-Hit",        "scroll",      12,      125));
+        allItems.Add(new Scrolls("Enchant Weapon To-Damn",       "scroll",      12,      125));
+        allItems.Add(new Scrolls("Enchant Armour",               "scroll",      12,      125));
+        allItems.Add(new Scrolls("Summon Undead",                "scroll",      15,      0));
+        allItems.Add(new Scrolls("Teleport Level",               "scroll",      20,      50));
+        allItems.Add(new Scrolls("Holy Prayer",                  "scroll",      24,      80));
+        allItems.Add(new Scrolls("Protection From Evil",         "scroll",      30,      100));
+        allItems.Add(new Scrolls("Genocide",                     "scroll",      35,      750));
+        allItems.Add(new Scrolls("Dispel Undead",                "scroll",      40,      200));
+        allItems.Add(new Scrolls("Recharging",                   "scroll",      40,      200));
+        allItems.Add(new Scrolls("Destruction",                  "scroll",      40,      750));
+        allItems.Add(new Scrolls("Curse Armour",                 "scroll",      50,      0));
+        allItems.Add(new Scrolls("Curse Weapon",                 "scroll",      50,      0));
+        allItems.Add(new Scrolls("Enchant Armour",               "scroll",      50,      500));
+        allItems.Add(new Scrolls("Enchant Weapon",               "scroll",      50,      500));
+        allItems.Add(new Scrolls("Rune of Protection",           "scroll",      50,      500));
+        allItems.Add(new Scrolls("Mass Genocide",                "scroll",      50,      1000));
+        //                          Name                       ModelName      Weight Level  Cost  Dig NumberOfDice RangeOfDice
+        allItems.Add(new Diggers("Shovel",                  "RustyShovel",      6.0f,    0,   15,   0,     1,       2));
+        allItems.Add(new Diggers("Pick",                        "Pickaxe",      15.0f,   0,   50,   1,     1,       3));
+        allItems.Add(new Diggers("Gnomish Shovel",          "RustyShovel",      5.0f,    20,  100,  1,     1,       2));
+        allItems.Add(new Diggers("Orcish Pick",                 "Pickaxe",      18.0f,   20,  500,  2,     1,       3));
+        allItems.Add(new Diggers("Dwarven Shovel",          "RustyShovel",      12.0f,   40,  250,  2,     1,       3));
+        allItems.Add(new Diggers("Dwarven Pick",                "Pickaxe",      20.0f,   50,  1200, 3,     1,       4));
+        //                        Name                         ModelName      Level Cost CostPlus MinRange MaxRange
+        allItems.Add(new Amulets("Searching",                   "helmets",         14,   250, 50,      -100,    50));
+        allItems.Add(new Amulets("Slow Digestion",              "helmets",         14,   200, 0,       0,       0));
+        allItems.Add(new Amulets("Teleportation",               "helmets",         14,   0,   0,       0,       0));
+        allItems.Add(new Amulets("Adornment",                   "helmets",         16,   20,  0,       0,       0));
+        allItems.Add(new Amulets("Charisma",                    "helmets",         20,   250, 100,     -20,     10));
+        allItems.Add(new Amulets("Wisdom",                      "helmets",         20,   300, 100,     -20,     10));
+        allItems.Add(new Amulets("Resist Acid",                 "helmets",         24,   250, 0,       0,       0));
+        allItems.Add(new Amulets("DOOM",                        "helmets",         50,   0,   0,       -5,      0));
+        allItems.Add(new Amulets("The Magi",                    "helmets",         50,   5000,20,      5,       125));
     }
 }

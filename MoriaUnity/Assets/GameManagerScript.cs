@@ -7,6 +7,7 @@ public class GameManagerScript : MonoBehaviour
 {
     public Transform WallPrefab;
     ItemsControl items;
+    MonsterManager monsterManager;
     const int WORLD_WIDTH = 100, WORLD_DEPTH = 100;
     mapSpace[,] theMap;
 
@@ -15,22 +16,43 @@ public class GameManagerScript : MonoBehaviour
     void Start()
     {
         int currentLevel = 10;
-        theMap = new mapSpace[WORLD_WIDTH, WORLD_DEPTH];
+        theMap = generateMap();
+
         items = FindObjectOfType<ItemsControl>();
+        monsterManager = FindObjectOfType<MonsterManager>();
         theMap[5, 5] = new mapSpace(mapSpace.Immovables.Wall);
         Instantiate(WallPrefab, new Vector3(5, 0, 5), Quaternion.identity);
         for (int i = 0; i < 10; i++)
         generateRandomItem(currentLevel);
+        Vector2Int newPosition = randomPosition();
+        Creature newMonster = monsterManager.createMonsterAt(newPosition);
+        place(newMonster, newPosition);
+    }
 
+    private void place(Creature newMonster, Vector2Int newPosition)
+    {
+        theMap[(int)newPosition.x, (int)newPosition.y].AddMonster(newMonster);
+    }
+
+    private mapSpace[,] generateMap()
+    {
+       mapSpace[,] newMap =  new mapSpace[WORLD_WIDTH, WORLD_DEPTH];
+        for (int i = 0; i < WORLD_WIDTH; i++)
+            for (int J = 0; J < WORLD_DEPTH; J++)
+                newMap[i, J] = new mapSpace(mapSpace.Immovables.Space);
+
+        return newMap;
     }
 
     private void generateRandomItem(int currentLevel)
     {
-        accessItem newItem = items.getRandomItem(currentLevel);
+      
 
         Vector2Int newItemPosition = randomPosition();
 
-        newItem.transform.position = new Vector3(newItemPosition.x, 0, newItemPosition.y);
+        theMap[newItemPosition.x, newItemPosition.y].place(items.randomItem(currentLevel));
+
+
     }
 
     internal Vector2Int randomPosition()
@@ -76,16 +98,52 @@ public class GameManagerScript : MonoBehaviour
 
     }
 
-    private Creature getMonsterAt(Vector3 newPosition)
+    internal bool monsterIsHere(Vector3 newPosition)
     {
         throw new NotImplementedException();
     }
 
-
-
-
-    internal bool CanMoveTo(Vector3 newPosition)
+    internal Creature getMonsterAt(Vector3 newPosition)
     {
+       return  theMap[(int)newPosition.x, (int)newPosition.z].getMonster();
+    }
+
+    internal bool CanMoveTo(CharacterControl character, Vector3 newPosition)
+    {
+        // Check For Monster
+        if (theMap[(int)newPosition.x, (int)newPosition.z].containsMonster())
+        {
+            int damage = registerAttack(new Creature(character.stats), theMap[(int)newPosition.x, (int) newPosition.z].getMonster());
+
+            theMap[(int)newPosition.x, (int)newPosition.z].getMonster().damaged(damage);
+        }
+
         return theMap[(int)newPosition.x, (int)newPosition.z].canMoveTo();
+    }
+
+    private int registerAttack(Creature creatureA, Creature CreatureB)
+    {
+        {     
+            int isHit = Combat.HitCheck(creatureA, CreatureB);
+
+            if (isHit == 1)
+            {
+                int damageDealt = Combat.CalcDamage(creatureA, CreatureB, isHit);
+                CreatureB.damaged(damageDealt);
+                Debug.Log(damageDealt + " Damage Dealt");
+                return damageDealt;
+            }
+
+            if (isHit == 2)
+            {
+                int damageDealt = Combat.CalcDamage(creatureA, CreatureB, isHit);
+                CreatureB.damaged(damageDealt);
+                Debug.Log("Critical Hit!\n" + damageDealt + " Damage Dealt");
+                return damageDealt;
+            }
+      
+            Debug.Log("Attack Missed...");
+            return 0;      
+        }
     }
 }

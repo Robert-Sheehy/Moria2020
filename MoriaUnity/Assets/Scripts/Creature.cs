@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-
-
     public class Creature
     {
         private int strengthBonus;
@@ -17,6 +15,11 @@ using System.Text;
         private int damageBonus;
         private int totalAC;
         private Boolean player;
+
+    internal string modelFilename;
+    internal string name;
+    internal string description;
+
 
         public Creature(Character_Stats character)
         {
@@ -50,7 +53,25 @@ using System.Text;
             this.player = false;
         }
 
-        public void damaged(int damageDealt)
+    public Creature(string name, string description, string filename,int str, int dex, int intel, int hp, int dnum, int drange, int hitbonus, int dbonus,int ac)
+    {
+        //Enemy creature generation here
+        //Values below (aside from player) are placeholders
+        this.strengthBonus = 2;
+        this.dexterityBonus = 2;
+        this.intelligenceBonus = 2;
+        this.HP = 30;
+        this.damageNumber = 2;
+        this.damageRange = 6;
+        this.hitBonus = 1;
+        this.damageBonus = 1;
+        this.totalAC = 14;
+        this.player = false;
+        this.name = name;
+        this.description = description;
+        this.modelFilename = filename;
+    }
+    public void damaged(int damageDealt)
         {
             this.HP = getHealth() - damageDealt;
         }
