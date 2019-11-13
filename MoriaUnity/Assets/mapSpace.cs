@@ -14,6 +14,9 @@ public  enum Immovables { Space, Open_Door, Stairs_Up, Stairs_Down, Wall, Closed
     List<Item> ItemsHere;
     CharacterControl CharacterHere;
     Creature EnemyHere;
+    private bool isVisible = false;
+
+    public bool isEmpty { get { return thisIs == Immovables.Space; }  }
 
     public mapSpace(Immovables wall)
     {
@@ -34,6 +37,25 @@ public  enum Immovables { Space, Open_Door, Stairs_Up, Stairs_Down, Wall, Closed
         return thisIs < Immovables.Wall;
     }
 
+
+    internal void  makeVisible(ItemsControl itemManger)
+    {
+        if (!isVisible)
+        {
+            isVisible = true;
+            generateItemGOHere(itemManger);
+        }
+    }
+
+    private void generateItemGOHere(ItemsControl itemManager)
+    {
+       foreach (Item newItem in ItemsHere)
+        {
+            accessItem newitemScript = itemManager.createItemGO(newItem);
+            
+        }
+    }
+
     internal Creature getMonster()
     {
         return EnemyHere;
@@ -43,8 +65,12 @@ public  enum Immovables { Space, Open_Door, Stairs_Up, Stairs_Down, Wall, Closed
         ItemsHere.Add(item);
     }
 
+
     internal void AddMonster(Creature newMonster)
     {
         EnemyHere = newMonster;
-    }
+}
+
+
+
 }

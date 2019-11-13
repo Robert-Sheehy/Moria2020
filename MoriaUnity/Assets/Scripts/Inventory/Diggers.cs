@@ -18,6 +18,5 @@ public class Diggers : Item
         itemDig = Dig;
         number_of_dice = NumberOfDice;
         range_of_dice = RangeOfDice;
-
     }
 }
