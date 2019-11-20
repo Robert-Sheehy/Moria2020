@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class mapSpace 
+public class mapSpace
 {
-public  enum Immovables { Space, Open_Door, Stairs_Up, Stairs_Down, Wall, Closed_Door}
+    public enum Immovables { Space, Open_Door, Stairs_Up, Stairs_Down, Wall, Closed_Door }
 
-   public   Immovables thisIs = Immovables.Space;
+    public Immovables thisIs = Immovables.Space;
 
 
 
@@ -39,14 +39,13 @@ public  enum Immovables { Space, Open_Door, Stairs_Up, Stairs_Down, Wall, Closed
         return EnemyHere;
     }
 
-<<<<<<< master
     internal void AddMonster(Creature newMonster)
     {
         EnemyHere = newMonster;
-=======
+        
+    }
     internal void place(Item item)
     {
         ItemsHere.Add(item);
->>>>>>> master
     }
 }
