@@ -58,12 +58,13 @@ public class CharacterControl : MonoBehaviour
             Vector3 newPosition = transform.position + direction;
 
             theManager.AttemptMove(newPosition, this);
-            if (theManager.CanMoveTo(newPosition))
+            /*if (theManager.CanMoveTo(newPosition))
             {
                 transform.position += direction;
 
                 transform.rotation = Quaternion.LookRotation(direction);
             }
+            */
         }
     }
 }

@@ -50,7 +50,7 @@ public class GameManagerScript : MonoBehaviour
 
         Vector2Int newItemPosition = randomPosition();
 
-        theMap[newItemPosition.x, newItemPosition.y].place(items.randomItem(currentLevel));
+        //theMap[newItemPosition.x, newItemPosition.y].place(items.randomItem(currentLevel));
 
 
     }
