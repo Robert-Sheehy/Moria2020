@@ -54,6 +54,5 @@ public class Item
         min_level = Level;
         itemCost = Cost;
         itemMagicLevel = magicLevel;
-   ;
     }
 }

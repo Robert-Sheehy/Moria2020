@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Weapon : Item
 {
-    int number_of_dice;
-    int range_of_dice;
-    int magic_damage;
+    internal int number_of_dice;
+    internal int range_of_dice;
+    internal int magic_damage;
 
 public Weapon(string Name, string ModelName, float Weight, int Level, int Cost,int magic_Level, int NumberOfDice, int RangeOfDice, int Magic_damage)
     {

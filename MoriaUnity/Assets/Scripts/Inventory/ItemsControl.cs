@@ -5,20 +5,12 @@ using UnityEngine;
 
 public class ItemsControl : MonoBehaviour
 {
-    List<Item> allItems;
+    public static List<Item> allItems;
 
-
-    // Start is called before the first frame update
     void Awake()
     {
-       
-
         allItems = new List<Item>();
         addAllItems();
-  
-
-
-
     }
     IEnumerator delayedAccess(FloatingTextControl text, string message, Transform parent)
     {
@@ -42,6 +34,7 @@ public class ItemsControl : MonoBehaviour
         int randomnum = UnityEngine.Random.Range(0, allItems.Count);
         return allItems[randomnum];
     }
+
     internal Item randomItem(int currentLevel)
     {
         Item newItem = randomItem();
@@ -53,24 +46,15 @@ public class ItemsControl : MonoBehaviour
 
     internal accessItem getRandomItemGO(int forLevel)
     {
-      
-    
         Item tryItem = randomItem(forLevel);
 
         return createItemGO(tryItem);
-
-  
-
-
-
-
-
-
     }
 
 
 
     internal accessItem createItemGO(Item item)
+
     {
         print(item.ModelFilename);
       GameObject itemGO = (GameObject)   Instantiate( Resources.Load(item.ModelFilename));
@@ -112,7 +96,7 @@ public class ItemsControl : MonoBehaviour
         allItems.Add(new Weapon("Lance",                            "Lnace",     30.0f,  10,    230,  1,           2,             8,          -2));
         allItems.Add(new Weapon("Morningstar",                      "MStar",     15.0f,  10,    396,  1,           2,             6,          -2));
         allItems.Add(new Weapon("Lucerne Hammer",                   "Hammer",    12.0f,  11,    376,  1,           2,             5,          -2));
-        allItems.Add(new Weapon("Flail",                            "MStar",         15.0f,  12,    353,  1,           2,             6,          -2));
+        allItems.Add(new Weapon("Flail",                            "MStar",     15.0f,  12,    353,  1,           2,             6,          -2));
         allItems.Add(new Weapon("Longsword",                        "LongSword", 13.0f,  12,    200,  1,           1,             10,         -2));
         allItems.Add(new Weapon("Battle Axe",                       "Gaxe",      17.0f,  13,    334,  1,           3,             4,          -2));
         allItems.Add(new Weapon("Bastard Sword",                    "LongSword", 14.0f,  14,    350,  1,           3,             4,          -2));
@@ -122,7 +106,7 @@ public class ItemsControl : MonoBehaviour
         allItems.Add(new Weapon("Broad Axe",                        "broadaxe",  16.0f,  17,    304,  1,           2,             6,          -2));
         allItems.Add(new Weapon("Fauchard",                         "Fauchard",  17.0f,  17,    376,  1,           1,             10,         -2));
         allItems.Add(new Weapon("Katana",                           "katana",    12.0f,  18,    400,  1,           3,             4,          -2));
-        allItems.Add(new Weapon("Ball and Chain",                   "MStar",         15.0f,  20,    200,  1,           2,             4,          -2));
+        allItems.Add(new Weapon("Ball and Chain",                   "MStar",     15.0f,  20,    200,  1,           2,             4,          -2));
         allItems.Add(new Weapon("Glaive",                           "Fauchard",  19.0f,  20,    363,  1,           2,             6,          -2));
         allItems.Add(new Weapon("Halberd",                          "Hbard",     19.0f,  22,    430,  1,           3,             4,          -2));
         allItems.Add(new Weapon("Battle Axe(Balestarius)",          "Gaxe",      18.0f,  30,    500,  1,           2,             8,          -2));
