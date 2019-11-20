@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemyControl : MonoBehaviour
 {
     CharacterControl thePlayer;
-   
+    internal Creature stats;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,15 +20,18 @@ public class EnemyControl : MonoBehaviour
     {
         print(getDirection());
 
-        if (IshouldMove()) moveMe(getDirection());
-       
-        
+        if (IshouldMove()) moveMe(getDirection()); 
     }
 
     private void moveMe(Vector3 v)
     {
         transform.position += v;
         transform.rotation = Quaternion.LookRotation(v);
+    }
+
+    internal void youAreA(Creature creature)
+    {
+        stats = creature;
     }
 
     private bool IshouldMove()
@@ -55,7 +58,10 @@ public class EnemyControl : MonoBehaviour
         if (x < -buff) return -1.0f;
         if (x > buff) return 1.0f;
         return 0.0f;
+    }
 
-
+    internal void reduceHealth(int damage)
+    {
+        stats.damaged(damage);
     }
 }
