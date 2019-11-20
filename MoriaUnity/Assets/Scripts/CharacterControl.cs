@@ -1,20 +1,22 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterControl : MonoBehaviour
 {
+    internal GameManagerScript theManager;
     internal Character_Stats stats;
-    GameManagerScript theManager;
-    TurnTimer food;
+    internal Inventory inventory;
+    internal Equipment equipment;
+    
     // Start is called before the first frame update
     void Start()
     {
-        theManager = FindObjectOfType<GameManagerScript>();
-        food = new TurnTimer(3000);
-        transform.position = new Vector3(10, 0, 10);
+        equipment = new Equipment();
 
+        equipment.equip(ItemsControl.allItems[4]);
+        theManager = FindObjectOfType<GameManagerScript>();
+        transform.position = new Vector3(0, 0, 0);
     }
 
     // Update is called once per frame
@@ -52,24 +54,17 @@ public class CharacterControl : MonoBehaviour
         if(direction.magnitude>0)
 
         {
-            food.tick();
-            if (food.isNearlyOver) print("You are getting Hungry");
-            if (food.isOver) print("You faint from hunger");
-            if (food.overUpperLimit) print("You feel bloated, movement slowed");
-          
+
             Vector3 newPosition = transform.position + direction;
-  
-            if (theManager.CanMoveTo(this,newPosition))
+
+            theManager.AttemptMove(newPosition, this);
+            /*if (theManager.CanMoveTo(newPosition))
             {
                 transform.position += direction;
 
                 transform.rotation = Quaternion.LookRotation(direction);
             }
+            */
         }
-    }
-
-    private void processHit(CharacterControl characterControl, Creature creature)
-    {
-        throw new NotImplementedException();
     }
 }

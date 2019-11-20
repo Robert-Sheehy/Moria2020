@@ -5,10 +5,11 @@ using UnityEngine;
 public class Inventory 
 {
     public int slotsX, slotsY;
-    public List<accessItem> inventory = new List<accessItem>();
-    public List<accessItem> slots = new List<accessItem>();
+    public List<Item> inventory = new List<Item>();
+    public List<Item> slots = new List<Item>();
 
     private bool showInventorty;
+    private int itemsInInventory = 0;
 
 
 
@@ -26,13 +27,13 @@ public class Inventory
         {
             for(int y = 0; y < slotsY; y++)
             {
-                GUI.Box(new Rect(x * 20, y * 20, 20,20), y.ToString());
+                GUI.Box(new Rect(x * itemsInInventory, y * 1, 20,20), y.ToString());
             }
         }
     }
 
 
-    internal void AddItem(accessItem item)
+    internal void AddItem(Item item)
     {
         inventory.Add(item);
         Debug.Log("inventory has " + inventory.Count.ToString());

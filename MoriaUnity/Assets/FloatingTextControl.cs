@@ -7,6 +7,7 @@ using System;
 public class FloatingTextControl : MonoBehaviour
 {
     TMP_Text bubbleText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,8 +17,7 @@ public class FloatingTextControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Rotates text to look toward the main camera
-        transform.rotation = Quaternion.LookRotation(-(Camera.main.transform.position - transform.position).normalized, Vector3.up);
+        transform.rotation = Quaternion.LookRotation(Vector3.down);
     }
 
     internal void setMessage(string v)
@@ -32,15 +32,19 @@ public class FloatingTextControl : MonoBehaviour
 
     internal void setParent(Transform transformOfParent)
     {
-        //Attaches the text to its parent and moves it to the parent location
         transform.parent = transformOfParent;
-        transform.localPosition = Vector3.zero;
+
+        //sets position of the text
+        transform.localPosition = new Vector3(0.0f,0.0f,-2.0f);
     }
 
     internal void setColor()
     {
-        Color textColor = new Color(1.5f, 0f, 1.5f);
+        Color textColor = new Color(1f, 1f, 1f);
         bubbleText.color = textColor;
+
+        //set font size
+        bubbleText.fontSize = 8;
     }
 
     internal void increaseSize()

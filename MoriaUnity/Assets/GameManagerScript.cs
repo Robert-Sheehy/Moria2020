@@ -21,10 +21,10 @@ public class GameManagerScript : MonoBehaviour
         items = FindObjectOfType<ItemsControl>();
         monsterManager = FindObjectOfType<MonsterManager>();
         theMap[5, 5] = new mapSpace(mapSpace.Immovables.Wall);
-        Instantiate(WallPrefab, new Vector3(5, 0, 5), Quaternion.identity);
+
         for (int i = 0; i < 10; i++)
-        generateRandomItem(currentLevel);
-        Vector2Int newPosition = randomPosition();
+            generateRandomItem(currentLevel);
+        Vector2Int newPosition = randomEmptyPosition();
         Creature newMonster = monsterManager.createMonsterAt(newPosition);
         place(newMonster, newPosition);
     }
@@ -48,16 +48,24 @@ public class GameManagerScript : MonoBehaviour
     {
       
 
-        Vector2Int newItemPosition = randomPosition();
+        Vector2Int newItemPosition = randomEmptyPosition();
 
-        theMap[newItemPosition.x, newItemPosition.y].place(items.randomItem(currentLevel));
+
+        getMapAtPosition(newItemPosition).place(items.randomItem(currentLevel));
+
 
 
     }
 
-    internal Vector2Int randomPosition()
+    mapSpace getMapAtPosition(Vector2Int pos)
     {
-        return new Vector2Int(UnityEngine.Random.Range(0, WORLD_WIDTH), UnityEngine.Random.Range(0, WORLD_DEPTH));
+        return theMap[pos.x, pos.y];
+    }
+    internal Vector2Int randomEmptyPosition()
+    {
+        Vector2Int newPosition  = new Vector2Int(UnityEngine.Random.Range(0, WORLD_WIDTH), UnityEngine.Random.Range(0, WORLD_DEPTH));
+        if (getMapAtPosition(newPosition).isEmpty) return newPosition;
+        return randomEmptyPosition();
 
     }
 
