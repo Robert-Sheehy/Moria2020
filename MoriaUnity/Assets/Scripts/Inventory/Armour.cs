@@ -23,8 +23,6 @@ public class Armour : Item
         itemMagicLevel = magic_Level;
         slot = inSlot;
         
-
-
     }
     
     
