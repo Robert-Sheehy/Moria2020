@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class mapSpace
+
+public class mapSpace 
+
 {
     public enum Immovables { Space, Open_Door, Stairs_Up, Stairs_Down, Wall, Closed_Door }
 
@@ -15,6 +17,7 @@ public class mapSpace
     CharacterControl CharacterHere;
     Creature EnemyHere;
     private bool isVisible = false;
+    private Vector3 myPosition;
 
     public bool isEmpty { get { return thisIs == Immovables.Space; }  }
 
@@ -38,12 +41,27 @@ public class mapSpace
     }
 
 
-    internal void  makeVisible(ItemsControl itemManger)
+    internal void  makeVisible()
     {
         if (!isVisible)
         {
             isVisible = true;
-            generateItemGOHere(itemManger);
+
+            switch (thisIs)
+            {
+                case Immovables.Wall:
+                   GameObject.Instantiate(GameManagerScript.Wall,myPosition,Quaternion.identity);
+
+                    break;
+
+                case Immovables.Space:
+
+                    GameObject.Instantiate(GameManagerScript.Wall, myPosition + Vector3.down, Quaternion.identity);
+                    break;
+
+
+            }
+            generateItemGOHere(GameManagerScript.items);
         }
     }
 
@@ -53,6 +71,7 @@ public class mapSpace
        foreach (Item newItem in ItemsHere)
         {
             accessItem newitemScript = itemManager.createItemGO(newItem);
+            newitemScript.transform.position = myPosition;
             
         }
     }
@@ -67,6 +86,10 @@ public class mapSpace
 
     }
 
+    internal void youAreAt(Vector3 position)
+    {
+        myPosition = position;
+    }
 
     internal void AddMonster(Creature newMonster)
     {

@@ -28,10 +28,10 @@ public class MonsterManager : MonoBehaviour
         
     }
 
-    internal Creature createMonsterAt(Vector2Int newPosition)
-    {
-        throw new NotImplementedException();
-    }
+    //internal Creature createMonsterAt(Vector2Int newPosition)
+    //{
+
+    //}
 
     void populateMonsterList()
     {

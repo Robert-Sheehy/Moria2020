@@ -5,16 +5,18 @@ using UnityEngine;
 
 public class GameManagerScript : MonoBehaviour
 {
-    public Transform WallPrefab;
-    ItemsControl items;
+  
+    public static ItemsControl items;
     MonsterManager monsterManager;
     const int WORLD_WIDTH = 100, WORLD_DEPTH = 100;
     mapSpace[,] theMap;
+    public static GameObject Wall;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        Wall = (GameObject) Resources.Load("WallPreFab");
         int currentLevel = 10;
         theMap = generateMap();
 
@@ -25,8 +27,8 @@ public class GameManagerScript : MonoBehaviour
         for (int i = 0; i < 10; i++)
             generateRandomItem(currentLevel);
         Vector2Int newPosition = randomEmptyPosition();
-        Creature newMonster = monsterManager.createMonsterAt(newPosition);
-        place(newMonster, newPosition);
+    //    Creature newMonster = monsterManager.createMonsterAt(newPosition);
+    //    place(newMonster, newPosition);
     }
 
     private void place(Creature newMonster, Vector2Int newPosition)
@@ -39,9 +41,16 @@ public class GameManagerScript : MonoBehaviour
        mapSpace[,] newMap =  new mapSpace[WORLD_WIDTH, WORLD_DEPTH];
         for (int i = 0; i < WORLD_WIDTH; i++)
             for (int J = 0; J < WORLD_DEPTH; J++)
+            {
                 newMap[i, J] = new mapSpace(mapSpace.Immovables.Space);
-
+                newMap[i, J].youAreAt(worldPositionFor(i, J));
+            }
         return newMap;
+    }
+
+    private Vector3 worldPositionFor(int i, int j)
+    {
+        return new Vector3(i, 0, j);
     }
 
     private void generateRandomItem(int currentLevel)
@@ -73,7 +82,35 @@ public class GameManagerScript : MonoBehaviour
     void Update()
     {
         
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            Vector2Int v = randomEmptyPosition();
+            makeVisible(new Vector3(v.x, 0, v.y), 5);
+           
+        }
+
+
     }
+
+
+    void makeVisible(Vector3 position, float radius)
+    {
+        int iPos = (int)position.x;
+        int jPos = (int)position.z;
+        int range = (int) radius;
+
+        for (int i = iPos - range; i < iPos + range + 1; i++) 
+            for (int j = jPos - range; j < jPos + range + 1; j++) 
+                if (isOnMap(i, j))
+                    theMap[i, j].makeVisible();
+
+    }
+
+    private bool isOnMap(int i, int j)
+    {
+        return (i >= 0) && (j >= 0) && (i < WORLD_WIDTH) && (j < WORLD_DEPTH);
+    }
+
     internal void AttemptMove(Vector3 newPosition, CharacterControl character)
     {
         if (theMap[(int)newPosition.x, (int)newPosition.z].containsMonster()) //1000 is a placeholder value for identifing a monster
