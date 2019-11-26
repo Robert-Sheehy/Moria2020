@@ -10,7 +10,7 @@ public class Armour : Item
         Shield, Back
     }
     internal Slots slot;
-    int AC;
+    internal int AC;
 
     internal Armour(string Name, string ModelName, float Weight, int Level, int Cost, int magic_Level, int ACin, Slots inSlot)
     {
