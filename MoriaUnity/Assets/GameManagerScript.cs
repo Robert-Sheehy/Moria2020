@@ -27,6 +27,7 @@ public class GameManagerScript : MonoBehaviour
         for (int i = 0; i < 10; i++)
             generateRandomItem(currentLevel);
         Vector2Int newPosition = randomEmptyPosition();
+        generateRandomCreature(1);
     //    Creature newMonster = monsterManager.createMonsterAt(newPosition);
     //    place(newMonster, newPosition);
     }
@@ -64,6 +65,13 @@ public class GameManagerScript : MonoBehaviour
 
 
 
+    }
+
+    private void generateRandomCreature(int currentLevel)
+    {
+        Vector2Int newCreaturePosition = randomEmptyPosition();
+        theMap[(int)newCreaturePosition.x, (int)newCreaturePosition.y].AddMonster(monsterManager.randomCreature(currentLevel));
+        //place(monsterManager.randomCreature(currentLevel), newCreaturePosition);
     }
 
     mapSpace getMapAtPosition(Vector2Int pos)
@@ -168,7 +176,7 @@ public class GameManagerScript : MonoBehaviour
 
     private int registerAttack(Creature creatureA, Creature CreatureB)
     {
-        {     
+        {
             int isHit = Combat.HitCheck(creatureA, CreatureB);
 
             if (isHit == 1)
@@ -188,7 +196,7 @@ public class GameManagerScript : MonoBehaviour
             }
       
             Debug.Log("Attack Missed...");
-            return 0;      
+            return 0;
         }
     }
 }

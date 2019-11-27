@@ -62,6 +62,13 @@ public class mapSpace
 
             }
             generateItemGOHere(GameManagerScript.items);
+            if ((EnemyHere != null) && !EnemyHere.GOCreated)
+            {
+                EnemyControl newMonster = MonsterManager.create(EnemyHere);
+                newMonster.transform.position = myPosition;
+            }
+
+                 
         }
     }
 

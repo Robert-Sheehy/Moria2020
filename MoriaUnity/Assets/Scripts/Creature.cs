@@ -19,9 +19,9 @@ using System.Text;
     internal string modelFilename;
     internal string name;
     internal string description;
+    internal bool GOCreated;
 
-
-        public Creature(Character_Stats character)
+    public Creature(Character_Stats character)
         {
             // Division by 10 is assuming max stats of 100, may need tweaking
             this.strengthBonus = (int)(character.getStrength() / 10);
