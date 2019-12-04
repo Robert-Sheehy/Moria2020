@@ -162,8 +162,20 @@ public class GameManagerScript : MonoBehaviour
 
             theMap[(int)newPosition.x, (int)newPosition.z].getMonster().damaged(damage);
         }
+        if (theMap[(int)newPosition.x, (int)newPosition.z].canMoveTo())
+        {
+            make_visible_around(newPosition);
+            return true;
+        }
+        return false;
+    }
 
-        return theMap[(int)newPosition.x, (int)newPosition.z].canMoveTo();
+    private void make_visible_around(Vector3 newPosition)
+    {
+        for (int x = (int)(newPosition.x - 1); x <= newPosition.x + 1; x++)
+            for (int z = (int)(newPosition.z - 1); z <= newPosition.z + 1; z++)
+                if (isOnMap(x, z))
+                    theMap[x, z].makeVisible();
     }
 
     private int registerAttack(Creature creatureA, Creature CreatureB)
