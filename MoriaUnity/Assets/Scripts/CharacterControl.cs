@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -58,13 +59,17 @@ public class CharacterControl : MonoBehaviour
             Vector3 newPosition = transform.position + direction;
 
             theManager.AttemptMove(newPosition, this);
-            /*if (theManager.CanMoveTo(newPosition))
+            if (theManager.CanMoveTo(this, newPosition))
             {
                 transform.position += direction;
 
                 transform.rotation = Quaternion.LookRotation(direction);
+
+             
             }
-            */
+            
         }
     }
+
+
 }
