@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class MonsterManager : MonoBehaviour
 {
-
     List<Creature> allMonsters;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,11 +15,20 @@ public class MonsterManager : MonoBehaviour
         create(allMonsters[0]);
     }
 
-    private void create(Creature creature)
+    public static EnemyControl create(Creature creature)
     {
         GameObject itemGO = (GameObject)Instantiate(Resources.Load(creature.modelFilename));
         EnemyControl newMonster = itemGO.AddComponent<EnemyControl>();
+
         newMonster.youAreA(creature);
+        return newMonster;
+    }
+
+    public Creature randomCreature(int currentLevel)
+    {
+        int randomNum = UnityEngine.Random.Range(0, currentLevel);
+        Creature newCreature = allMonsters[randomNum];
+        return newCreature;
     }
 
     // Update is called once per frame
@@ -37,7 +46,7 @@ public class MonsterManager : MonoBehaviour
     {
         //                           |Name                   |Description                           |Model File Name         |Str |Dex |Int |HP    |DMG Dice |DMG Range  |Hit Bonus  |Damage Bonus   |AC
         allMonsters.Add(new Creature("Zombie",               "A mindless Zombie",                   "Zombie",                 2,   0,  -2,   20,    1,        6,          2,          2,              8));
-        allMonsters.Add(new Creature("Skeleton",             "A shambling skeleton",                "n/a",                    0,   2,  -2,   10,    2,        4,          3,          2,              12));
+        allMonsters.Add(new Creature("Skeleton",             "A shambling skeleton",                "Skeleton",               0,   2,  -2,   10,    2,        4,          3,          2,              12));
         allMonsters.Add(new Creature("Brown Snake",          "A common brown snake",                "n/a",                    0,   2,   0,   8,     1,        4,          4,          2,              14));
         allMonsters.Add(new Creature("Kobold",               "A small, scaled Kobold",              "n/a",                    1,   1,   1,   15,    2,        4,          4,          2,              12));
         allMonsters.Add(new Creature("White Worm Mass",      "A mass of writhing worms",            "n/a",                   -1,   0,  -4,   1,     1,        2,          0,          0,              17));
